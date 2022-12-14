@@ -225,34 +225,34 @@ public class UsuarioDao implements InterfazUsuario{
         return 0;
     }
 
-    public int comprobar(String nombre, String clave){
-        try {
-            int num = seleccionar().size();     //Lo he tenido que meter en una variable para que funcione...
-            for (int i = 0; i < num; i++) {
-                //System.out.println(seleccionar().size());
-                if(seleccionar().get(i).getNombre().equalsIgnoreCase(nombre) && seleccionar().get(i).getClave().equalsIgnoreCase(clave)){
-                    return 1;
-                }
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace(System.out);
-        }
-        return 0;  
-    }
-      
-    public int comprobar(String nombre){
-        try {
-            int num = seleccionar().size();     //Lo he tenido que meter en una variable para que funcione...
-            for (int i = 0; i < num; i++) {
-                if(seleccionar().get(i).getNombre().equalsIgnoreCase(nombre)){
-                    return 1;
-                }
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace(System.out);
-        }
-        return 0;
-    }
+//    public int comprobar(String nombre, String clave){
+//        try {
+//            int num = seleccionar().size();     //Lo he tenido que meter en una variable para que funcione...
+//            for (int i = 0; i < num; i++) {
+//                //System.out.println(seleccionar().size());
+//                if(seleccionar().get(i).getNombre().equalsIgnoreCase(nombre) && seleccionar().get(i).getClave().equalsIgnoreCase(clave)){
+//                    return 1;
+//                }
+//            }
+//        } catch (SQLException ex) {
+//            ex.printStackTrace(System.out);
+//        }
+//        return 0;  
+//    }
+//      
+//    public int comprobar(String nombre){
+//        try {
+//            int num = seleccionar().size();     //Lo he tenido que meter en una variable para que funcione...
+//            for (int i = 0; i < num; i++) {
+//                if(seleccionar().get(i).getNombre().equalsIgnoreCase(nombre)){
+//                    return 1;
+//                }
+//            }
+//        } catch (SQLException ex) {
+//            ex.printStackTrace(System.out);
+//        }
+//        return 0;
+//    }
     
     
     public void actualizarArchivoUsuarios(){
