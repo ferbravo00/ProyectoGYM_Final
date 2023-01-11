@@ -6,7 +6,6 @@
 package datos;
 
 import dominio.Usuario;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
