@@ -5,56 +5,95 @@
  */
 package dominio;
 
+import java.io.Serializable;
+import java.util.Collection;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  *
  * @author Alumno Mañana
  */
-public class Ejercicio {
-    private int idEjercicio;
-    private String Nombre;
+@Entity
+@Table(name = "ejercicio")
+@NamedQueries({
+    @NamedQuery(name = "Ejercicio.findAll", query = "SELECT e FROM Ejercicio e"),
+    @NamedQuery(name = "Ejercicio.findByIdEjercicio", query = "SELECT e FROM Ejercicio e WHERE e.idEjercicio = :idEjercicio"),
+    @NamedQuery(name = "Ejercicio.findByNombre", query = "SELECT e FROM Ejercicio e WHERE e.nombre = :nombre"),
+    @NamedQuery(name = "Ejercicio.findByFoto", query = "SELECT e FROM Ejercicio e WHERE e.foto = :foto"),
+    @NamedQuery(name = "Ejercicio.findByDescripcion", query = "SELECT e FROM Ejercicio e WHERE e.descripcion = :descripcion"),
+    @NamedQuery(name = "Ejercicio.findByParteCuerpo", query = "SELECT e FROM Ejercicio e WHERE e.parteCuerpo = :parteCuerpo")})
+public class Ejercicio implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "idEjercicio")
+    private Integer idEjercicio;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "Nombre")
+    private String nombre;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "Foto")
     private String foto;
-    private String Descripcion;
-    private String ParteCuerpo;
-
-    public Ejercicio(int idEjercicio, String Nombre, String foto, String Descripcion, String ParteCuerpo) {
-        this.idEjercicio = idEjercicio;
-        this.Nombre = Nombre;
-        this.foto = foto;
-        this.Descripcion = Descripcion;
-        this.ParteCuerpo = ParteCuerpo;
-    }
-
-    public Ejercicio(String Nombre, String foto, String Descripcion, String ParteCuerpo) {
-        this.Nombre = Nombre;
-        this.foto = foto;
-        this.Descripcion = Descripcion;
-        this.ParteCuerpo = ParteCuerpo;
-    }
-
-    public Ejercicio(String ParteCuerpo) {
-        this.ParteCuerpo = ParteCuerpo;
-    }
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 250)
+    @Column(name = "Descripcion")
+    private String descripcion;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "ParteCuerpo")
+    private String parteCuerpo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ejercicio")
+    private Collection<Rutinaejercicio> rutinaejercicioCollection;
 
     public Ejercicio() {
     }
 
-    
-    
-    
-    public int getIdEjercicio() {
+    public Ejercicio(Integer idEjercicio) {
+        this.idEjercicio = idEjercicio;
+    }
+
+    public Ejercicio(Integer idEjercicio, String nombre, String foto, String descripcion, String parteCuerpo) {
+        this.idEjercicio = idEjercicio;
+        this.nombre = nombre;
+        this.foto = foto;
+        this.descripcion = descripcion;
+        this.parteCuerpo = parteCuerpo;
+    }
+
+    public Integer getIdEjercicio() {
         return idEjercicio;
     }
 
-    public void setIdEjercicio(int idEjercicio) {
+    public void setIdEjercicio(Integer idEjercicio) {
         this.idEjercicio = idEjercicio;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getFoto() {
@@ -66,41 +105,44 @@ public class Ejercicio {
     }
 
     public String getDescripcion() {
-        return Descripcion;
+        return descripcion;
     }
 
-    public void setDescripcion(String Descripcion) {
-        this.Descripcion = Descripcion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getParteCuerpo() {
-        return ParteCuerpo;
+        return parteCuerpo;
     }
 
-    public void setParteCuerpo(String ParteCuerpo) {
-        this.ParteCuerpo = ParteCuerpo;
+    public void setParteCuerpo(String parteCuerpo) {
+        this.parteCuerpo = parteCuerpo;
+    }
+
+    public Collection<Rutinaejercicio> getRutinaejercicioCollection() {
+        return rutinaejercicioCollection;
+    }
+
+    public void setRutinaejercicioCollection(Collection<Rutinaejercicio> rutinaejercicioCollection) {
+        this.rutinaejercicioCollection = rutinaejercicioCollection;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 67 * hash + this.idEjercicio;
+        int hash = 0;
+        hash += (idEjercicio != null ? idEjercicio.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Ejercicio)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Ejercicio other = (Ejercicio) obj;
-        if (this.idEjercicio != other.idEjercicio) {
+        Ejercicio other = (Ejercicio) object;
+        if ((this.idEjercicio == null && other.idEjercicio != null) || (this.idEjercicio != null && !this.idEjercicio.equals(other.idEjercicio))) {
             return false;
         }
         return true;
@@ -108,16 +150,7 @@ public class Ejercicio {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Ejercicio{idEjercicio=").append(idEjercicio);
-        sb.append(", Nombre=").append(Nombre);
-        sb.append(", foto=").append(foto);
-        sb.append(", Descripcion=").append(Descripcion);
-        sb.append(", ParteCuerpo=").append(ParteCuerpo);
-        sb.append('}');
-        return sb.toString();
+        return "dominio.Ejercicio[ idEjercicio=" + idEjercicio + " ]";
     }
-    
-    
     
 }
