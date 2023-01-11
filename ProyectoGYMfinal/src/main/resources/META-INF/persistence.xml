@@ -5,9 +5,6 @@
     <class>dominio.Series</class>
     <class>dominio.Rutinaejercicio</class>
     <class>dominio.Rutina</class>
-    <class>dominio.Gymbros_1</class>
-    <class>dominio.Usuario_1</class>
-    <class>dominio.Ejercicio_1</class>
     <class>dominio.Ejercicio</class>
     <class>dominio.Usuario</class>
   </persistence-unit>
