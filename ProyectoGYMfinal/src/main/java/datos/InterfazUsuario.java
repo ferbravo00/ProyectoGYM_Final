@@ -15,6 +15,8 @@ import java.util.List;
 public interface InterfazUsuario {
     public List<Usuario> findAllUsuarios();
     public Usuario findUsuarioByID(Usuario usuario);
+    public Usuario findUsuarioByNombre(Usuario usuario);
+    public Usuario findUsuarioByCorreo(Usuario usuario);
     public void insertUsuario(Usuario usuario);
     public void updateUsuario(Usuario usuario);
     public void deleteUsuario(Usuario usuario);

@@ -38,6 +38,15 @@ public class UsuarioDao implements InterfazUsuario{
         return em.find(Usuario.class, usuario.getIdUsuario());
     }
 
+    @Override
+    public Usuario findUsuarioByNombre(Usuario usuario) {
+        return em.find(Usuario.class, usuario.getNombre());
+    }
+    
+    @Override
+    public Usuario findUsuarioByCorreo(Usuario usuario) {
+        return em.find(Usuario.class, usuario.getCorreo());
+    }
     
    @Override
     public void insertUsuario(Usuario usuario) {

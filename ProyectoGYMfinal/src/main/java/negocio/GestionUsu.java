@@ -5,6 +5,7 @@
  */
 package negocio;
 import datos.*;
+import dominio.Usuario;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -20,50 +21,30 @@ public class GestionUsu{
         this.datos = new UsuarioDao();
     }
     
-    public int comprobar(String nombre, String clave){
-        try {
-            int num = this.datos.seleccionar().size();     //Lo he tenido que meter en una variable para que funcione...
-            for (int i = 0; i < num; i++) {
-                //System.out.println(seleccionar().size());
-                if(this.datos.seleccionar().get(i).getNombre().equalsIgnoreCase(nombre) && this.datos.seleccionar().get(i).getClave().equalsIgnoreCase(clave)){
-                    return 1;
-                }
+    public boolean comprobar(Usuario usu){
+        int num = this.datos.findAllUsuarios().size();     //Lo he tenido que meter en una variable para que funcione...
+        for (int i = 0; i < num; i++) {
+            //System.out.println(seleccionar().size());
+            if(this.datos.findAllUsuarios().get(i).getNombre().equalsIgnoreCase(usu.getNombre()) && this.datos.findAllUsuarios().get(i).getClave().equalsIgnoreCase(usu.getClave())){
+                return true;
             }
-        } catch (SQLException ex) {
-            ex.printStackTrace(System.out);
         }
-        return 0;  
+    return false;  
     }
       
-    public int comprobar(String nombre){
-        try {
-            int num = this.datos.seleccionar().size();     //Lo he tenido que meter en una variable para que funcione...
-            for (int i = 0; i < num; i++) {
-                if(this.datos.seleccionar().get(i).getNombre().equalsIgnoreCase(nombre)){
-                    return 1;
-                }
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace(System.out);
-        }
-        return 0;
-    }
+    
  
     public String cifrarMD5(String input) throws Exception {
         String md5 = null;
         if (null == input)
             return null;
-        try {
-            // Create MessageDigest object for MD5
-            MessageDigest digest = MessageDigest.getInstance("MD5");
-            // Update input string in message digest
-            digest.update(input.getBytes(), 0, input.length());
-            // Converts message digest value in base 16 (hex)
-            md5 = new BigInteger(1, digest.digest()).toString(16);
-        } catch (NoSuchAlgorithmException e) {
-
-            throw e;
-        }
+        // Create MessageDigest object for MD5
+        MessageDigest digest = MessageDigest.getInstance("MD5");
+        // Update input string in message digest
+        digest.update(input.getBytes(), 0, input.length());
+        // Converts message digest value in base 16 (hex)
+        md5 = new BigInteger(1, digest.digest()).toString(16);
+        
         return md5;
     }
     
