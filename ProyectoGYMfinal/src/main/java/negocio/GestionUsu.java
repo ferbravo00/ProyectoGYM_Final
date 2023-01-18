@@ -30,7 +30,7 @@ public class GestionUsu implements InterfazGestionUsu{
     }
 
     @Override
-    public Usuario econtrarUsuarioPorNombre(Usuario usuario) {
+    public Usuario econtrarUsuarioPorNombre(Usuario usuario) { 
         return usuarioDao.findUsuarioByNombre(usuario);
     }
 
