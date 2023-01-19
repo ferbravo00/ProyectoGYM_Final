@@ -22,10 +22,10 @@ public interface InterfazGestionRutina {
     
     public Rutina econtrarRutinaPorNombre(Rutina rutina);
     
-    public void registrarUsuario(Rutina rutina);
+    public void registrarRutina(Rutina rutina);
     
-    public void modificarUsuario(Rutina rutina);
+    public void modificarRutina(Rutina rutina);
     
-    public void eliminarUsuario(Rutina rutina);
+    public void eliminarRutina(Rutina rutina);
     
 }

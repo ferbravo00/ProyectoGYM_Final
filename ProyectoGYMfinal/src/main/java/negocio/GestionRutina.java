@@ -34,17 +34,17 @@ public class GestionRutina implements InterfazGestionRutina{
     }
     
     @Override
-    public void registrarUsuario(Rutina rutina) {
+    public void registrarRutina(Rutina rutina) {
         rutinaDao.insertRutina(rutina);
     }
 
     @Override
-    public void modificarUsuario(Rutina rutina) {
+    public void modificarRutina(Rutina rutina) {
         rutinaDao.updateRutina(rutina);
     }
 
     @Override
-    public void eliminarUsuario(Rutina rutina) {
+    public void eliminarRutina(Rutina rutina) {
         rutinaDao.deleteRutina(rutina);
     }
     
