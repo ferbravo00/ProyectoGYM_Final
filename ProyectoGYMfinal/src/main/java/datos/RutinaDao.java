@@ -33,24 +33,22 @@ public class RutinaDao implements InterfazRutina{
     }
     
     @Override
-    public Rutina findRutinaByIdUsu(Rutina rutina) {
+    public Rutina findRutinaById(Rutina rutina) {
         return em.find(Rutina.class, rutina.getUsuario());
     }
     
     @Override
-    public void insertEjercicio(Rutina rutina) {
+    public void insertRutina(Rutina rutina) {
         em.persist(rutina);
     }
     
     @Override
     public void updateRutina(Rutina rutina){
-        // Sincroniza cualquier modificamos que hayamos hecho de la persona en la BD
         em.merge(rutina);
     }
     
     @Override
     public void deleteRutina(Rutina rutina) {
-        // 1. actualizamos el estado del objeto en la base de datos => se borra.
         em.remove(em.merge(rutina));
     }
     
