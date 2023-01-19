@@ -6,8 +6,8 @@
 package dominio;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -97,11 +97,11 @@ public class Usuario implements Serializable {
         @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario")}, inverseJoinColumns = {
         @JoinColumn(name = "idUsuarioAmigo", referencedColumnName = "idUsuario")})
     @ManyToMany
-    private Collection<Usuario> usuarioCollection;
-    @ManyToMany(mappedBy = "usuarioCollection")
-    private Collection<Usuario> usuarioCollection1;
+    private List<Usuario> usuarioList;
+    @ManyToMany(mappedBy = "usuarioList")
+    private List<Usuario> usuarioList1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    private Collection<Rutina> rutinaCollection;
+    private List<Rutina> rutinaList;
 
     public Usuario() {
     }
@@ -202,28 +202,28 @@ public class Usuario implements Serializable {
         this.fechaAlta = fechaAlta;
     }
 
-    public Collection<Usuario> getUsuarioCollection() {
-        return usuarioCollection;
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
     }
 
-    public void setUsuarioCollection(Collection<Usuario> usuarioCollection) {
-        this.usuarioCollection = usuarioCollection;
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
     }
 
-    public Collection<Usuario> getUsuarioCollection1() {
-        return usuarioCollection1;
+    public List<Usuario> getUsuarioList1() {
+        return usuarioList1;
     }
 
-    public void setUsuarioCollection1(Collection<Usuario> usuarioCollection1) {
-        this.usuarioCollection1 = usuarioCollection1;
+    public void setUsuarioList1(List<Usuario> usuarioList1) {
+        this.usuarioList1 = usuarioList1;
     }
 
-    public Collection<Rutina> getRutinaCollection() {
-        return rutinaCollection;
+    public List<Rutina> getRutinaList() {
+        return rutinaList;
     }
 
-    public void setRutinaCollection(Collection<Rutina> rutinaCollection) {
-        this.rutinaCollection = rutinaCollection;
+    public void setRutinaList(List<Rutina> rutinaList) {
+        this.rutinaList = rutinaList;
     }
 
     @Override

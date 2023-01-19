@@ -6,8 +6,8 @@
 package dominio;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -52,7 +52,7 @@ public class Rutinaejercicio implements Serializable {
     @ManyToOne(optional = false)
     private Rutina rutina;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "rutinaejercicio")
-    private Collection<Series> seriesCollection;
+    private List<Series> seriesList;
 
     public Rutinaejercicio() {
     }
@@ -102,12 +102,12 @@ public class Rutinaejercicio implements Serializable {
         this.rutina = rutina;
     }
 
-    public Collection<Series> getSeriesCollection() {
-        return seriesCollection;
+    public List<Series> getSeriesList() {
+        return seriesList;
     }
 
-    public void setSeriesCollection(Collection<Series> seriesCollection) {
-        this.seriesCollection = seriesCollection;
+    public void setSeriesList(List<Series> seriesList) {
+        this.seriesList = seriesList;
     }
 
     @Override

@@ -6,7 +6,7 @@
 package dominio;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -43,7 +43,7 @@ public class Rutina implements Serializable {
     @Column(name = "Nombre")
     private String nombre;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "rutina")
-    private Collection<Rutinaejercicio> rutinaejercicioCollection;
+    private List<Rutinaejercicio> rutinaejercicioList;
     @JoinColumn(name = "Usuario_idUsuario", referencedColumnName = "idUsuario", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Usuario usuario;
@@ -80,12 +80,12 @@ public class Rutina implements Serializable {
         this.nombre = nombre;
     }
 
-    public Collection<Rutinaejercicio> getRutinaejercicioCollection() {
-        return rutinaejercicioCollection;
+    public List<Rutinaejercicio> getRutinaejercicioList() {
+        return rutinaejercicioList;
     }
 
-    public void setRutinaejercicioCollection(Collection<Rutinaejercicio> rutinaejercicioCollection) {
-        this.rutinaejercicioCollection = rutinaejercicioCollection;
+    public void setRutinaejercicioList(List<Rutinaejercicio> rutinaejercicioList) {
+        this.rutinaejercicioList = rutinaejercicioList;
     }
 
     public Usuario getUsuario() {
