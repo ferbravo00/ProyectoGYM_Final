@@ -16,8 +16,8 @@ public interface InterfazRutina {
     
     public List<Rutina> findAllRutinas();
     public Rutina findRutinaByNombre(Rutina rutina);
-    public Rutina findRutinaByIdUsu(Rutina rutina);
-    public void insertEjercicio(Rutina rutina);
+    public Rutina findRutinaById(Rutina rutina);
+    public void insertRutina(Rutina rutina);
     public void updateRutina(Rutina rutina);
     public void deleteRutina(Rutina rutina);
     
