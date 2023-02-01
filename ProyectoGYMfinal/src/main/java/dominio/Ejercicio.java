@@ -62,7 +62,7 @@ public class Ejercicio implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "ParteCuerpo")
     private String parteCuerpo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ejercicio")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ejercicioidEjercicio")
     private List<Rutinaejercicio> rutinaejercicioList;
 
     public Ejercicio() {

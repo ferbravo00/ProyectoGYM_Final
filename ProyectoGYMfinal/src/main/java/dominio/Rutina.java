@@ -10,8 +10,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -29,47 +29,45 @@ import javax.validation.constraints.Size;
 @Table(name = "rutina")
 @NamedQueries({
     @NamedQuery(name = "Rutina.findAll", query = "SELECT r FROM Rutina r"),
-    @NamedQuery(name = "Rutina.findByIdRutina", query = "SELECT r FROM Rutina r WHERE r.rutinaPK.idRutina = :idRutina"),
-    @NamedQuery(name = "Rutina.findByNombre", query = "SELECT r FROM Rutina r WHERE r.nombre = :nombre"),
-    @NamedQuery(name = "Rutina.findByUsuarioidUsuario", query = "SELECT r FROM Rutina r WHERE r.rutinaPK.usuarioidUsuario = :usuarioidUsuario")})
+    @NamedQuery(name = "Rutina.findByIdRutina", query = "SELECT r FROM Rutina r WHERE r.idRutina = :idRutina"),
+    @NamedQuery(name = "Rutina.findByNombre", query = "SELECT r FROM Rutina r WHERE r.nombre = :nombre")})
 public class Rutina implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected RutinaPK rutinaPK;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "idRutina")
+    private Integer idRutina;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "Nombre")
     private String nombre;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rutina")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rutinaidRutina")
     private List<Rutinaejercicio> rutinaejercicioList;
-    @JoinColumn(name = "Usuario_idUsuario", referencedColumnName = "idUsuario", insertable = false, updatable = false)
+    @JoinColumn(name = "usuario_idUsuario", referencedColumnName = "idUsuario")
     @ManyToOne(optional = false)
-    private Usuario usuario;
+    private Usuario usuarioidUsuario;
 
     public Rutina() {
     }
 
-    public Rutina(RutinaPK rutinaPK) {
-        this.rutinaPK = rutinaPK;
+    public Rutina(Integer idRutina) {
+        this.idRutina = idRutina;
     }
 
-    public Rutina(RutinaPK rutinaPK, String nombre) {
-        this.rutinaPK = rutinaPK;
+    public Rutina(Integer idRutina, String nombre) {
+        this.idRutina = idRutina;
         this.nombre = nombre;
     }
 
-    public Rutina(int idRutina, int usuarioidUsuario) {
-        this.rutinaPK = new RutinaPK(idRutina, usuarioidUsuario);
+    public Integer getIdRutina() {
+        return idRutina;
     }
 
-    public RutinaPK getRutinaPK() {
-        return rutinaPK;
-    }
-
-    public void setRutinaPK(RutinaPK rutinaPK) {
-        this.rutinaPK = rutinaPK;
+    public void setIdRutina(Integer idRutina) {
+        this.idRutina = idRutina;
     }
 
     public String getNombre() {
@@ -88,18 +86,18 @@ public class Rutina implements Serializable {
         this.rutinaejercicioList = rutinaejercicioList;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Usuario getUsuarioidUsuario() {
+        return usuarioidUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuarioidUsuario(Usuario usuarioidUsuario) {
+        this.usuarioidUsuario = usuarioidUsuario;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (rutinaPK != null ? rutinaPK.hashCode() : 0);
+        hash += (idRutina != null ? idRutina.hashCode() : 0);
         return hash;
     }
 
@@ -110,7 +108,7 @@ public class Rutina implements Serializable {
             return false;
         }
         Rutina other = (Rutina) object;
-        if ((this.rutinaPK == null && other.rutinaPK != null) || (this.rutinaPK != null && !this.rutinaPK.equals(other.rutinaPK))) {
+        if ((this.idRutina == null && other.idRutina != null) || (this.idRutina != null && !this.idRutina.equals(other.idRutina))) {
             return false;
         }
         return true;
@@ -118,7 +116,7 @@ public class Rutina implements Serializable {
 
     @Override
     public String toString() {
-        return "dominio.Rutina[ rutinaPK=" + rutinaPK + " ]";
+        return "dominio.Rutina[ idRutina=" + idRutina + " ]";
     }
     
 }

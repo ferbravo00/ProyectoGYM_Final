@@ -34,7 +34,7 @@ public class RutinaDao implements InterfazRutina{
     
     @Override
     public Rutina findRutinaById(Rutina rutina) {
-        return em.find(Rutina.class, rutina.getUsuario());
+        return em.find(Rutina.class, rutina.getIdRutina());
     }
     
     @Override

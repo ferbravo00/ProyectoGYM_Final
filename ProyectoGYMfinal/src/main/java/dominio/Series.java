@@ -8,8 +8,10 @@ package dominio;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -25,16 +27,18 @@ import javax.validation.constraints.NotNull;
 @Table(name = "series")
 @NamedQueries({
     @NamedQuery(name = "Series.findAll", query = "SELECT s FROM Series s"),
-    @NamedQuery(name = "Series.findByIdSeries", query = "SELECT s FROM Series s WHERE s.seriesPK.idSeries = :idSeries"),
+    @NamedQuery(name = "Series.findByIdSeries", query = "SELECT s FROM Series s WHERE s.idSeries = :idSeries"),
     @NamedQuery(name = "Series.findByNumeroSerie", query = "SELECT s FROM Series s WHERE s.numeroSerie = :numeroSerie"),
     @NamedQuery(name = "Series.findByRepeticiones", query = "SELECT s FROM Series s WHERE s.repeticiones = :repeticiones"),
-    @NamedQuery(name = "Series.findByPeso", query = "SELECT s FROM Series s WHERE s.peso = :peso"),
-    @NamedQuery(name = "Series.findByRutinaEjercicioidRutinaEjercicio", query = "SELECT s FROM Series s WHERE s.seriesPK.rutinaEjercicioidRutinaEjercicio = :rutinaEjercicioidRutinaEjercicio")})
+    @NamedQuery(name = "Series.findByPeso", query = "SELECT s FROM Series s WHERE s.peso = :peso")})
 public class Series implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected SeriesPK seriesPK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "idSeries")
+    private Integer idSeries;
     @Basic(optional = false)
     @NotNull
     @Column(name = "NumeroSerie")
@@ -47,34 +51,30 @@ public class Series implements Serializable {
     @NotNull
     @Column(name = "Peso")
     private int peso;
-    @JoinColumn(name = "RutinaEjercicio_idRutinaEjercicio", referencedColumnName = "idRutinaEjercicio", insertable = false, updatable = false)
+    @JoinColumn(name = "rutinaejercicio_idRutinaEjercicio", referencedColumnName = "idRutinaEjercicio")
     @ManyToOne(optional = false)
-    private Rutinaejercicio rutinaejercicio;
+    private Rutinaejercicio rutinaejercicioidRutinaEjercicio;
 
     public Series() {
     }
 
-    public Series(SeriesPK seriesPK) {
-        this.seriesPK = seriesPK;
+    public Series(Integer idSeries) {
+        this.idSeries = idSeries;
     }
 
-    public Series(SeriesPK seriesPK, int numeroSerie, int repeticiones, int peso) {
-        this.seriesPK = seriesPK;
+    public Series(Integer idSeries, int numeroSerie, int repeticiones, int peso) {
+        this.idSeries = idSeries;
         this.numeroSerie = numeroSerie;
         this.repeticiones = repeticiones;
         this.peso = peso;
     }
 
-    public Series(int idSeries, int rutinaEjercicioidRutinaEjercicio) {
-        this.seriesPK = new SeriesPK(idSeries, rutinaEjercicioidRutinaEjercicio);
+    public Integer getIdSeries() {
+        return idSeries;
     }
 
-    public SeriesPK getSeriesPK() {
-        return seriesPK;
-    }
-
-    public void setSeriesPK(SeriesPK seriesPK) {
-        this.seriesPK = seriesPK;
+    public void setIdSeries(Integer idSeries) {
+        this.idSeries = idSeries;
     }
 
     public int getNumeroSerie() {
@@ -101,18 +101,18 @@ public class Series implements Serializable {
         this.peso = peso;
     }
 
-    public Rutinaejercicio getRutinaejercicio() {
-        return rutinaejercicio;
+    public Rutinaejercicio getRutinaejercicioidRutinaEjercicio() {
+        return rutinaejercicioidRutinaEjercicio;
     }
 
-    public void setRutinaejercicio(Rutinaejercicio rutinaejercicio) {
-        this.rutinaejercicio = rutinaejercicio;
+    public void setRutinaejercicioidRutinaEjercicio(Rutinaejercicio rutinaejercicioidRutinaEjercicio) {
+        this.rutinaejercicioidRutinaEjercicio = rutinaejercicioidRutinaEjercicio;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (seriesPK != null ? seriesPK.hashCode() : 0);
+        hash += (idSeries != null ? idSeries.hashCode() : 0);
         return hash;
     }
 
@@ -123,7 +123,7 @@ public class Series implements Serializable {
             return false;
         }
         Series other = (Series) object;
-        if ((this.seriesPK == null && other.seriesPK != null) || (this.seriesPK != null && !this.seriesPK.equals(other.seriesPK))) {
+        if ((this.idSeries == null && other.idSeries != null) || (this.idSeries != null && !this.idSeries.equals(other.idSeries))) {
             return false;
         }
         return true;
@@ -131,7 +131,7 @@ public class Series implements Serializable {
 
     @Override
     public String toString() {
-        return "dominio.Series[ seriesPK=" + seriesPK + " ]";
+        return "dominio.Series[ idSeries=" + idSeries + " ]";
     }
     
 }

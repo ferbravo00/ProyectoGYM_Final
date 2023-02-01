@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +19,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -100,8 +98,6 @@ public class Usuario implements Serializable {
     private List<Usuario> usuarioList;
     @ManyToMany(mappedBy = "usuarioList")
     private List<Usuario> usuarioList1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    private List<Rutina> rutinaList;
 
     public Usuario() {
     }
@@ -216,14 +212,6 @@ public class Usuario implements Serializable {
 
     public void setUsuarioList1(List<Usuario> usuarioList1) {
         this.usuarioList1 = usuarioList1;
-    }
-
-    public List<Rutina> getRutinaList() {
-        return rutinaList;
-    }
-
-    public void setRutinaList(List<Rutina> rutinaList) {
-        this.rutinaList = rutinaList;
     }
 
     @Override
