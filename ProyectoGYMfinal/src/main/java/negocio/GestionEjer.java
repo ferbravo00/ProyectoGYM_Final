@@ -8,6 +8,7 @@ package negocio;
 import datos.InterfazEjercicio;
 import datos.InterfazRutina;
 import dominio.Ejercicio;
+import java.sql.Array;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -48,4 +49,16 @@ public class GestionEjer implements InterfazGestionEjer{
     public void eliminarEjercicio(Ejercicio ejercicio) {
         ejercicioDao.deleteEjercicio(ejercicio);
     }
+   
+    @Override
+    public List<Ejercicio> buscarEjer(Ejercicio ejer){
+        List<Ejercicio> listadoEjer = null;
+        for (int i=0; i<listarEjercicios().size();i++) {
+            if (listarEjercicios().get(i).getNombre().toLowerCase().contains(ejer.getNombre().toLowerCase())){
+                listadoEjer.add(listarEjercicios().get(i));
+            }
+        }
+        return listadoEjer;
+    }
+    
 }
