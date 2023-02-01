@@ -22,4 +22,5 @@ public interface InterfazEjercicio {
     public void insertEjercicio(Ejercicio ejercicio);
     public void updateEjercicio(Ejercicio ejercicio);
     public void deleteEjercicio(Ejercicio ejercicio);
+    
 }

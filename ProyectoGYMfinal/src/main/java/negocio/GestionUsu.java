@@ -23,6 +23,11 @@ public class GestionUsu implements InterfazGestionUsu{
     public List<Usuario> listarUsuarios() {       
         return usuarioDao.findAllUsuarios();
     }
+    
+    @Override
+    public List<Usuario> listarAmigos(Usuario usuario) {       
+        return usuarioDao.listarGymbros(usuario);
+    }
 
     @Override
     public Usuario encontrarUsuarioPorID(Usuario usuario) {
@@ -51,16 +56,27 @@ public class GestionUsu implements InterfazGestionUsu{
     
     @Override
     public boolean comprobar(Usuario usu){
-        int num = this.usuarioDao.findAllUsuarios().size();     //Lo he tenido que meter en una variable para que funcione...
+        int num = listarUsuarios().size();     //Lo he tenido que meter en una variable para que funcione...
         for (int i = 0; i < num; i++) {
             //System.out.println(seleccionar().size());
-            if(this.usuarioDao.findAllUsuarios().get(i).getNombre().equalsIgnoreCase(usu.getNombre()) && this.usuarioDao.findAllUsuarios().get(i).getClave().equalsIgnoreCase(usu.getClave())){
+            if(this.listarUsuarios().get(i).getNombre().equalsIgnoreCase(usu.getNombre()) && listarUsuarios().get(i).getClave().equalsIgnoreCase(usu.getClave())){
                 return true;
             }
         }
     return false;  
     }
       
+    @Override
+    public List<Usuario> buscarUsu(Usuario usu){
+        List<Usuario> listadoUsu = null;
+        for (int i=0; i<listarUsuarios().size();i++) {
+            if (listarUsuarios().get(i).getNombre().toLowerCase().contains(usu.getNombre().toLowerCase())){
+                listadoUsu.add(listarUsuarios().get(i));
+            }
+        }
+        return listadoUsu;
+    }
+    
     
     @Override
     public String cifrarMD5(String input) throws Exception {
@@ -76,5 +92,7 @@ public class GestionUsu implements InterfazGestionUsu{
         
         return md5;
     }
+    
+    
     
 }

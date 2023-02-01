@@ -24,4 +24,6 @@ public interface InterfazGestionEjer {
     public void modificarEjercicio(Ejercicio ejercicio);
     
     public void eliminarEjercicio(Ejercicio ejercicio);
+    
+    public List<Ejercicio> buscarEjer(Ejercicio ejer);
 }

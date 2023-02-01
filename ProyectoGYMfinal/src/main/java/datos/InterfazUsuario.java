@@ -20,4 +20,5 @@ public interface InterfazUsuario {
     public void insertUsuario(Usuario usuario);
     public void updateUsuario(Usuario usuario);
     public void deleteUsuario(Usuario usuario);
+    public List<Usuario> listarGymbros(Usuario usuario);
 }

@@ -30,6 +30,12 @@ public class UsuarioDao implements InterfazUsuario{
         // Por lo que estamos escribiendo menos código
         return em.createNamedQuery("Usuario.findAll").getResultList();
     }
+    
+    @Override
+    public List<Usuario> listarGymbros(Usuario usuario) {
+        // Lista los amigos
+        return usuario.getUsuarioList1();
+    }
 
     @Override
     public Usuario findUsuarioByID(Usuario usuario) {

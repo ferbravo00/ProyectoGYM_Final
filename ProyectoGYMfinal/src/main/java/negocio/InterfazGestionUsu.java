@@ -29,5 +29,10 @@ public interface InterfazGestionUsu {
     
     public boolean comprobar(Usuario usu);
     
+    public List<Usuario> buscarUsu(Usuario usu);
+    
+    public List<Usuario> listarAmigos(Usuario usuario);
+    
     public String cifrarMD5(String input) throws Exception;
+    
 }
