@@ -5,9 +5,12 @@
  */
 
 package web;
+import dominio.Usuario;
 import negocio.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Fer
  */
 @WebServlet("/usuarios")
-public class UsuarioServelt extends HttpServlet{
+public class UsuarioServlet extends HttpServlet{
     
     // Ahora hacemos la inyección del componente EJB local al servlet
     @Inject
