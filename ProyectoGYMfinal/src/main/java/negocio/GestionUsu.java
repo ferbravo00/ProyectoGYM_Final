@@ -20,7 +20,8 @@ public class GestionUsu implements InterfazGestionUsu{
     private InterfazUsuario usuarioDao;
 
     @Override
-    public List<Usuario> listarUsuarios() {       
+    public List<Usuario> listarUsuarios() { 
+    System.out.println("Lista de usuarios");
         return usuarioDao.findAllUsuarios();
     }
     
