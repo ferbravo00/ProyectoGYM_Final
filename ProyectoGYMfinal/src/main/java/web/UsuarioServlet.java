@@ -48,21 +48,40 @@ public class UsuarioServlet extends HttpServlet{
                 respose);
     }
     
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws IOException, ServletException {
+        
+        // 1. Leemos los parametros de nuestro request
+        String accion = request.getParameter("accion");
+        if (accion != null){
+            switch (accion){
+                case "insertar":
+                    this.insertarCliente(request, response);
+                    break;
+                case "modificar":
+                    //this.modificarCliente(request, response);
+                    break;
+                default: 
+                    //this.accionDefault(request, response);
+            }
+        } else {
+            //this.accionDefault(request, response);
+        }
+    }
+    
+    
     private void insertarCliente(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         //1. Recuperamos los parámetros del request
         String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
-        String email = request.getParameter("email");
-        String telefono = request.getParameter("telefono");
-        
-        String saldoString = request.getParameter("saldo");
-        double saldo = 0;
-        
-        if (saldoString != null && !"".equals(saldoString)){
-            saldo = Double.parseDouble(saldoString);
-        }
+        String correo = request.getParameter("apellido");
+        String clave = request.getParameter("email");
+        int edad = Integer.parseInt(request.getParameter("edad"));
+        int altura = Integer.parseInt(request.getParameter("altura"));
+        int peso = Integer.parseInt(request.getParameter("peso"));
         
         //2. Creamos nuestro objeto Cliente
         Usuario usuario = new Usuario(nombre, correo, clave, edad, altura, peso);
