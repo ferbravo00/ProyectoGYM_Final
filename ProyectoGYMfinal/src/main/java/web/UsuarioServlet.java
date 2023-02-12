@@ -47,4 +47,31 @@ public class UsuarioServlet extends HttpServlet{
         request.getRequestDispatcher("/listadoUsuarios.jsp").forward(request, 
                 respose);
     }
+    
+    private void insertarCliente(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        //1. Recuperamos los parámetros del request
+        String nombre = request.getParameter("nombre");
+        String apellido = request.getParameter("apellido");
+        String email = request.getParameter("email");
+        String telefono = request.getParameter("telefono");
+        
+        String saldoString = request.getParameter("saldo");
+        double saldo = 0;
+        
+        if (saldoString != null && !"".equals(saldoString)){
+            saldo = Double.parseDouble(saldoString);
+        }
+        
+        //2. Creamos nuestro objeto Cliente
+        Usuario usuario = new Usuario(nombre, correo, clave, edad, altura, peso);
+        //3. Invocamos al método de acceso a datos que inserta un cliente
+        gestionUsu.registrarUsuario(usuario);
+        //System.out.println("registrosModificados = " + registrosModificados);
+        //4. Redirigimos a la acción por defecto
+        //this.accionDefault(request, response);
+    }
+    
+    
 }
