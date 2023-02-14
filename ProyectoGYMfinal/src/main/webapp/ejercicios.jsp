@@ -77,9 +77,8 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav ml-auto p-4 bg-secondary">
-                        <a href="pdf.php" class="nav-item nav-link me-5 fs-4">PDF <i class="fs-3 fa-solid fa-file-pdf"></i></a>
-                        <a href="grafico.php" class="nav-item nav-link me-5 fs-4">Graficos <i
-                                class="fa-solid fa-chart-pie"></i></a>
+                        <a href="pdf.php" class="nav-item nav-link me-5 fs-4">Rutinas <i class="fs-3 fa-solid fa-list-dropdown"></i></a>
+                        <a href="grafico.php" class="nav-item nav-link me-5 fs-4">Amigos <i class="fs-3 fa-solid fa-user-group"></i></a>
                         <a href="perfil.php" class="nav-item nav-link me-5 fs-4">Perfil <i
                                 class="fs-3 fa-solid fa-circle-user"></i></a>
 
@@ -146,7 +145,7 @@
                         <div class="card-social d-flex align-items-center justify-content-center">
                             <a class="btn btn-outline-light rounded-circle text-center mr-3 px-0"
                                 style="width: 50px; height: 50px;"
-                                href="editar.php?id=${ejercicios.idEjercicio}"><i
+                                href="ejercicios?accion=editar&idEjercicio=${ejercicios.idEjercicio}"><i
                                     class="fs-3 fa-solid fa-pen-to-square"></i></a>
                             <a class="btn btn-outline-light rounded-circle text-center mr-3 px-0"
                                 style="width: 50px; height: 50px;"

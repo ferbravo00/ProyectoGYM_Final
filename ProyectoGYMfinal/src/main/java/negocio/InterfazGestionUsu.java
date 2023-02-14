@@ -19,6 +19,8 @@ public interface InterfazGestionUsu {
     
     public Usuario encontrarUsuarioPorID(Usuario usuario);
     
+    public Usuario econtrarUsuarioPorCorreo(Usuario usuario);
+    
     public Usuario econtrarUsuarioPorNombre(Usuario usuario);
     
     public void registrarUsuario(Usuario usuario);

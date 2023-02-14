@@ -56,7 +56,7 @@ public class EjercicioServlet extends HttpServlet {
             if (accion != null){
                 switch (accion){
                     case "editar":
-                        //this.editarCliente(request, response);
+                        this.editarEjer(request, response);
                         break;
                     case "eliminar":
                         this.eliminarEjer(request, response);
@@ -82,7 +82,9 @@ public class EjercicioServlet extends HttpServlet {
                     case "insertar":
                         this.insertarEjer(request, response);
                         break;
-                    
+                    case "modificar":
+                        this.modificarEjer(request, response);
+                        break;
                     default:
                         this.listaEjercicios(request, response);
                 }
@@ -129,6 +131,27 @@ public class EjercicioServlet extends HttpServlet {
         this.listaEjercicios(request, response);
     }
     
+    
+    private void modificarEjer(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        //1. Recuperamos los parámetros del request
+        String id = request.getParameter("id");
+        String nombre = request.getParameter("nombre");
+        String parte = request.getParameter("parte");
+        String descri = request.getParameter("descri");
+        String foto = request.getParameter("foto");
+       
+        //2. Creamos nuestro objeto Cliente
+        Ejercicio ejercicio = new Ejercicio(Integer.parseInt(id),nombre,foto, descri, parte);
+        //3. Invocamos al método de acceso a datos que inserta un cliente
+        gestionEjer.modificarEjercicio(ejercicio);
+        //System.out.println("registrosModificados = " + registrosModificados);
+        //4. Redirigimos a la acción por defecto
+        //this.accionDefault(request, response);
+        this.listaEjercicios(request, response);
+    }
+    
     private void eliminarEjer(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -144,6 +167,28 @@ public class EjercicioServlet extends HttpServlet {
         //4. Redirigimos a la acción por defecto
         //this.accionDefault(request, response);
         this.listaEjercicios(request, response);
+    }
+    
+    
+    private void editarEjer(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        //1. Recuperamos los parámetros del request
+
+        String id =request.getParameter("idEjercicio");
+
+        //2. Creamos nuestro objeto Cliente
+        Ejercicio ejercicio = new Ejercicio(Integer.parseInt(id));
+        //3. Invocamos al método de acceso a datos que inserta un cliente
+        Ejercicio ejercicios = gestionEjer.encontrarEjercicioPorID(ejercicio);
+        //System.out.println("registrosModificados = " + registrosModificados);
+        //4. Redirigimos a la acción por defecto
+        //this.accionDefault(request, response);
+        request.setAttribute("ejercicios", ejercicios);
+       
+        
+        // Redirigimos al JSP
+        request.getRequestDispatcher("/editar.jsp").forward(request, response);
     }
     /**
      * Returns a short description of the servlet.

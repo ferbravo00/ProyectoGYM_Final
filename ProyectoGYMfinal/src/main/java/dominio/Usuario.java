@@ -48,18 +48,15 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "idUsuario")
     private Integer idUsuario;
-    @Basic(optional = false)
-    @NotNull
+    @Basic(optional = false)  
     @Size(min = 1, max = 45)
     @Column(name = "Nombre")
     private String nombre;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 60)
     @Column(name = "Correo")
     private String correo;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 200)
     @Column(name = "Clave")
     private String clave;
@@ -67,15 +64,12 @@ public class Usuario implements Serializable {
     @Column(name = "Gimnasio")
     private String gimnasio;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "Edad")
     private int edad;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "Altura")
     private int altura;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "Peso")
     private int peso;
     @Size(max = 100)
