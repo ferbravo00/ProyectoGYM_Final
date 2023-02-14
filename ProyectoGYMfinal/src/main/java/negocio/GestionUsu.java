@@ -9,12 +9,14 @@ import dominio.Usuario;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author Alumno Mañana
  */
+@Stateless
 public class GestionUsu implements InterfazGestionUsu{
     @Inject    
     private InterfazUsuario usuarioDao;
@@ -60,7 +62,7 @@ public class GestionUsu implements InterfazGestionUsu{
         int num = listarUsuarios().size();     //Lo he tenido que meter en una variable para que funcione...
         for (int i = 0; i < num; i++) {
             //System.out.println(seleccionar().size());
-            if(this.listarUsuarios().get(i).getNombre().equalsIgnoreCase(usu.getNombre()) && listarUsuarios().get(i).getClave().equalsIgnoreCase(usu.getClave())){
+            if(this.listarUsuarios().get(i).getCorreo().equalsIgnoreCase(usu.getCorreo()) && listarUsuarios().get(i).getClave().equalsIgnoreCase(usu.getClave())){
                 return true;
             }
         }

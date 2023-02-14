@@ -10,6 +10,7 @@ import dominio.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.Stateless;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,6 +19,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author Alumno Mañana
  */
+@Stateless
 public class UsuarioDao implements InterfazUsuario{
    
     @PersistenceContext(unitName="GymPU")

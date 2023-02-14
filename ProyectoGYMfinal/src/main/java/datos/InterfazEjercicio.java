@@ -9,11 +9,13 @@ import dominio.Ejercicio;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.Local;
 
 /**
  *
  * @author Alumno Mañana
  */
+@Local
 public interface InterfazEjercicio {
     public List<Ejercicio> findAllEjercicios();
     public Ejercicio findEjercicioByID(Ejercicio ejercicio);

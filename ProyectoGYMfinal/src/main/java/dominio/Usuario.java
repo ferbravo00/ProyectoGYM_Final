@@ -1,14 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package dominio;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,15 +18,14 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  *
- * @author Alumno Mañana
+ * @author Fer
  */
 @Entity
 @Table(name = "usuario")
@@ -41,8 +39,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Usuario.findByEdad", query = "SELECT u FROM Usuario u WHERE u.edad = :edad"),
     @NamedQuery(name = "Usuario.findByAltura", query = "SELECT u FROM Usuario u WHERE u.altura = :altura"),
     @NamedQuery(name = "Usuario.findByPeso", query = "SELECT u FROM Usuario u WHERE u.peso = :peso"),
-    @NamedQuery(name = "Usuario.findByFoto", query = "SELECT u FROM Usuario u WHERE u.foto = :foto"),
-    @NamedQuery(name = "Usuario.findByFechaAlta", query = "SELECT u FROM Usuario u WHERE u.fechaAlta = :fechaAlta")})
+    @NamedQuery(name = "Usuario.findByFoto", query = "SELECT u FROM Usuario u WHERE u.foto = :foto")})
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -81,16 +78,9 @@ public class Usuario implements Serializable {
     @NotNull
     @Column(name = "Peso")
     private int peso;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
+    @Size(max = 100)
     @Column(name = "Foto")
     private String foto;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "FechaAlta")
-    @Temporal(TemporalType.DATE)
-    private Date fechaAlta;
     @JoinTable(name = "gymbros", joinColumns = {
         @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario")}, inverseJoinColumns = {
         @JoinColumn(name = "idUsuarioAmigo", referencedColumnName = "idUsuario")})
@@ -98,12 +88,19 @@ public class Usuario implements Serializable {
     private List<Usuario> usuarioList;
     @ManyToMany(mappedBy = "usuarioList")
     private List<Usuario> usuarioList1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioidUsuario")
+    private List<Rutina> rutinaList;
 
     public Usuario() {
     }
 
     public Usuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
+    }
+    
+    public Usuario(String correo, String clave) {
+        this.correo = correo;
+        this.clave = clave;
     }
     
     public Usuario(String nombre, String correo, String clave, int edad, int altura, int peso) {
@@ -115,7 +112,7 @@ public class Usuario implements Serializable {
         this.peso = peso;
     }
 
-    public Usuario(Integer idUsuario, String nombre, String correo, String clave, int edad, int altura, int peso, String foto, Date fechaAlta) {
+    public Usuario(Integer idUsuario, String nombre, String correo, String clave, int edad, int altura, int peso) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.correo = correo;
@@ -123,8 +120,6 @@ public class Usuario implements Serializable {
         this.edad = edad;
         this.altura = altura;
         this.peso = peso;
-        this.foto = foto;
-        this.fechaAlta = fechaAlta;
     }
 
     public Integer getIdUsuario() {
@@ -199,14 +194,6 @@ public class Usuario implements Serializable {
         this.foto = foto;
     }
 
-    public Date getFechaAlta() {
-        return fechaAlta;
-    }
-
-    public void setFechaAlta(Date fechaAlta) {
-        this.fechaAlta = fechaAlta;
-    }
-
     public List<Usuario> getUsuarioList() {
         return usuarioList;
     }
@@ -221,6 +208,14 @@ public class Usuario implements Serializable {
 
     public void setUsuarioList1(List<Usuario> usuarioList1) {
         this.usuarioList1 = usuarioList1;
+    }
+
+    public List<Rutina> getRutinaList() {
+        return rutinaList;
+    }
+
+    public void setRutinaList(List<Rutina> rutinaList) {
+        this.rutinaList = rutinaList;
     }
 
     @Override

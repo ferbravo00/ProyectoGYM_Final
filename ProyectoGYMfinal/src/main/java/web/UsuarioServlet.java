@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 
 /**
  *
@@ -27,7 +28,7 @@ public class UsuarioServlet extends HttpServlet{
     // Ahora hacemos la inyección del componente EJB local al servlet
     @Inject
     // Ahora definimos nuestra variable
-    GestionUsu gestionUsu; // Cremos una instancia de nuestra if local
+    private InterfazGestionUsu gestionUsu; // Cremos una instancia de nuestra if local
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse respose)
@@ -60,6 +61,9 @@ public class UsuarioServlet extends HttpServlet{
                 case "insertar":
                     this.insertarCliente(request, response);
                     break;
+                case "login":
+                    this.login(request, response);
+                    break;
                 case "modificar":
                     //this.modificarCliente(request, response);
                     break;
@@ -71,25 +75,49 @@ public class UsuarioServlet extends HttpServlet{
         }
     }
     
-    
+   
     private void insertarCliente(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         //1. Recuperamos los parámetros del request
+
         String nombre = request.getParameter("nombre");
-        String correo = request.getParameter("apellido");
-        String clave = request.getParameter("email");
-        int edad = Integer.parseInt(request.getParameter("edad"));
-        int altura = Integer.parseInt(request.getParameter("altura"));
-        int peso = Integer.parseInt(request.getParameter("peso"));
-        
+        String correo = request.getParameter("correo");
+        String clave = request.getParameter("pass");
+        String edad = request.getParameter("edad");
+        String altura = request.getParameter("altura");
+        String peso = request.getParameter("peso");
+        System.out.println("hola");
         //2. Creamos nuestro objeto Cliente
-        Usuario usuario = new Usuario(nombre, correo, clave, edad, altura, peso);
+        Usuario usuario = new Usuario(nombre, correo, clave, Integer.parseInt(edad), Integer.parseInt(altura), Integer.parseInt(peso));
         //3. Invocamos al método de acceso a datos que inserta un cliente
         gestionUsu.registrarUsuario(usuario);
         //System.out.println("registrosModificados = " + registrosModificados);
         //4. Redirigimos a la acción por defecto
         //this.accionDefault(request, response);
+        response.sendRedirect("index.jsp");
+    }
+    
+    
+    
+    private void login(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        //1. Recuperamos los parámetros del request
+
+
+        String correo = request.getParameter("correo");
+        String clave = request.getParameter("pass");
+        
+        //2. Creamos nuestro objeto Cliente
+        Usuario usuario = new Usuario(correo, clave);
+        //3. Invocamos al método de acceso a datos que inserta un cliente
+        if(gestionUsu.comprobar(usuario))response.sendRedirect("ejercicios");
+        else response.sendRedirect("login.jsp");
+        //System.out.println("registrosModificados = " + registrosModificados);
+        //4. Redirigimos a la acción por defecto
+        //this.accionDefault(request, response);
+        
     }
     
     

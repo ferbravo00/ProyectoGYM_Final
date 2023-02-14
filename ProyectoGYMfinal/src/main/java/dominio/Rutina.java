@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package dominio;
 
@@ -23,13 +22,14 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author Alumno Mañana
+ * @author Fer
  */
 @Entity
 @Table(name = "rutina")
 @NamedQueries({
     @NamedQuery(name = "Rutina.findAll", query = "SELECT r FROM Rutina r"),
     @NamedQuery(name = "Rutina.findByIdRutina", query = "SELECT r FROM Rutina r WHERE r.idRutina = :idRutina"),
+    @NamedQuery(name = "Rutina.findByUser", query = "SELECT r FROM Rutina r WHERE r.usuarioidUsuario = :usuarioidUsuario"),
     @NamedQuery(name = "Rutina.findByNombre", query = "SELECT r FROM Rutina r WHERE r.nombre = :nombre")})
 public class Rutina implements Serializable {
 

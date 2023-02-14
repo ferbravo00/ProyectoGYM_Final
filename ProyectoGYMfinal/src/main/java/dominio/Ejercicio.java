@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package dominio;
 
@@ -23,7 +22,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author Alumno Mañana
+ * @author Fer
  */
 @Entity
 @Table(name = "ejercicio")
@@ -43,22 +42,18 @@ public class Ejercicio implements Serializable {
     @Column(name = "idEjercicio")
     private Integer idEjercicio;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "Nombre")
     private String nombre;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "Foto")
     private String foto;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
+    @Size(min = 1, max = 500)
     @Column(name = "Descripcion")
     private String descripcion;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "ParteCuerpo")
     private String parteCuerpo;
@@ -72,6 +67,13 @@ public class Ejercicio implements Serializable {
         this.idEjercicio = idEjercicio;
     }
 
+    public Ejercicio(String nombre, String foto, String descripcion, String parteCuerpo) {
+        this.nombre = nombre;
+        this.foto = foto;
+        this.descripcion = descripcion;
+        this.parteCuerpo = parteCuerpo;
+    }
+    
     public Ejercicio(Integer idEjercicio, String nombre, String foto, String descripcion, String parteCuerpo) {
         this.idEjercicio = idEjercicio;
         this.nombre = nombre;

@@ -7,11 +7,14 @@ package datos;
 
 import dominio.Usuario;
 import java.util.List;
+import javax.ejb.Local;
+
 
 /**
  *
  * @author Alumno Mañana
  */
+//@Local
 public interface InterfazUsuario {
     public List<Usuario> findAllUsuarios();
     public Usuario findUsuarioByID(Usuario usuario);

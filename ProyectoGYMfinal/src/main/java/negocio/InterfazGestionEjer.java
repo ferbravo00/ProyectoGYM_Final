@@ -7,11 +7,13 @@ package negocio;
 
 import dominio.Ejercicio;
 import java.util.List;
+import javax.ejb.Local;
 
 /**
  *
  * @author Alumno Mañana
  */
+@Local
 public interface InterfazGestionEjer {
     public List<Ejercicio> listarEjercicios();
     

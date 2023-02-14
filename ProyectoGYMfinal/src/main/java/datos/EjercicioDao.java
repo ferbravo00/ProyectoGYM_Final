@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -20,6 +21,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author Alumno Mañana
  */
+@Stateless
 public class EjercicioDao implements InterfazEjercicio{
     
    @PersistenceContext(unitName="GymPU")

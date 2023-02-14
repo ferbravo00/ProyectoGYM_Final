@@ -10,12 +10,14 @@ import datos.InterfazRutina;
 import dominio.Ejercicio;
 import java.sql.Array;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author Alumno Mañana
  */
+@Stateless
 public class GestionEjer implements InterfazGestionEjer{
     @Inject    
     private InterfazEjercicio ejercicioDao;
