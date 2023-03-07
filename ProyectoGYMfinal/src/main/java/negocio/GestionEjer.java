@@ -9,6 +9,7 @@ import datos.InterfazEjercicio;
 import datos.InterfazRutina;
 import dominio.Ejercicio;
 import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -38,6 +39,11 @@ public class GestionEjer implements InterfazGestionEjer{
     }
     
     @Override
+    public List<Ejercicio> buscarEjercicios(Ejercicio ejercicio) {       
+        return ejercicioDao.findEjercicioByBuscar(ejercicio);
+    }
+    
+    @Override
     public void registrarEjercicio(Ejercicio ejercicio) {
         ejercicioDao.insertEjercicio(ejercicio);
     }
@@ -53,10 +59,10 @@ public class GestionEjer implements InterfazGestionEjer{
     }
    
     @Override
-    public List<Ejercicio> buscarEjer(Ejercicio ejer){
-        List<Ejercicio> listadoEjer = null;
+    public List<Ejercicio> buscarEjer(String ejer){
+        List<Ejercicio> listadoEjer = new ArrayList<>();
         for (int i=0; i<listarEjercicios().size();i++) {
-            if (listarEjercicios().get(i).getNombre().toLowerCase().contains(ejer.getNombre().toLowerCase())){
+            if (listarEjercicios().get(i).getNombre().toLowerCase().contains(ejer.toLowerCase()) || listarEjercicios().get(i).getParteCuerpo().toLowerCase().contains(ejer.toLowerCase())){
                 listadoEjer.add(listarEjercicios().get(i));
             }
         }

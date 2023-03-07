@@ -3,7 +3,7 @@
     Created on : 14 feb. 2023, 16:46:47
     Author     : Fer
 --%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,7 +86,7 @@
         <div class="container-fluid page-header mb-5">
             <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5"
                 style="min-height: 250px">
-                <h4 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase font-weight-bold">Lista de Usuarios</h4>
+                <h4 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase font-weight-bold">Editar Ejercicios</h4>
 
             </div>
         </div>
@@ -94,60 +94,31 @@
 
 
 
-        <div class="container py-5 team">
+        <div class="container py-5 team col-4">
             <div class="row shadow p-3 mb-5 bg-body rounded">
-                <table class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Clave</th>
-                    <th>Edad</th>
-                    <th>Altura</th>
-                    <th>Peso</th>
-                    <th>Foto</th>
-                    <th>Eliminar</th>
-                    <th>Editar</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <c:forEach items="${usuarios}" var="usuario">
-                    <tr>
-                      <td>${usuario.idUsuario}</td>
-                      <td>${usuario.nombre}</td>
-                      <td>${usuario.correo}</td>
-                      <td>${usuario.clave}</td>
-                      <td>${usuario.edad}</td>
-                      <td>${usuario.altura}</td>
-                      <td>${usuario.peso}</td>
-                      <td>
-                        <c:choose>
-                          <c:when test="${not empty usuario.fotobase64}">
-                            <img src="data:image/jpeg;base64,${usuario.fotobase64}" alt="${usuario.nombre}" class="img-fluid rounded-circle" width="50" height="50">
-                          </c:when>
-                          <c:otherwise>
-                            <img src="img/logo-min.jpg" alt="Imagen predeterminada" class="img-fluid rounded-circle" width="50" height="50">
-                          </c:otherwise>
-                        </c:choose>
-                      </td>
-                      <td>
-                        <a class="btn btn-outline-danger rounded-circle"
-                                    style="width: 45px; height: 45px;"
-                                    href="AdminUsu?accion=eliminar&idUsuario=${usuario.idUsuario}"><i
-                                        class="fs-4 fa-solid fa-trash"></i></a>
-                      </td>
-                      <td>
-                        <a class="btn btn-outline-info rounded-circle"
-                                    style="width: 45px; height: 45px;"
-                                    href="AdminUsu?accion=editar&idUsuario=${usuario.idUsuario}"><i
-                                        class="fs-4 fa-solid fa-pen-to-square"></i></a>
-                      </td>
-                    </tr>
-                  </c:forEach>
-                </tbody>
-              </table>
+                <div class="d-grid gap-2 col-12 mx-auto ">
+                    <img src="${ejercicios.foto}" class="img-thumbnail border-danger mt-4 w-100">
+                </div>
 
+                <div class="d-grid gap-2 col-12 mx-auto">
+                    <form action="ejercicios?accion=modificar" method="POST" enctype="multipart/form-data">
+                        <div class="row g-3 mt-3">
+                            <div class="col">
+                                <input type="text" class="form-control" name="nombre" value="${ejercicios.nombre}">
+                                <input type="text" value="${ejercicios.idEjercicio}" name="id" hidden >
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" name="parte" value="${ejercicios.parteCuerpo}">
+                            </div>
+                        </div>
+                        <input type="text" class="form-control mt-4" name="descri" value="${ejercicios.descripcion}">
+                        <input class="form-control my-4" name="imagen" type="file" id="formFile">
+
+                        <input type="submit" name="subir" value="Editar Ejercicio"
+                            class="btn-lg btn-outline-danger mb-4 fs-4 w-100">
+
+                    </form>
+                </div>
             </div>
         </div>
         <!-- Team End -->

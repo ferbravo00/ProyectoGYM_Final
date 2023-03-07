@@ -79,7 +79,7 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav ml-auto p-4 bg-secondary">
-                        <a href="usuarios?accion=listarRut" class="nav-item nav-link me-4 fs-5">Rutinas <i class="fs-4 fa-solid fa-list-dropdown"></i></a>
+                        <a href="rutinas" class="nav-item nav-link me-4 fs-5">Rutinas <i class="fs-4 fa-solid fa-list-dropdown"></i></a>
                         <!--<a href="usuarios?accion=amigos" class="nav-item nav-link me-4 fs-5">Amigos <i class="fs-4 fa-solid fa-user-group"></i></a>-->
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle me-4 fs-5" data-bs-toggle="dropdown">Amigos <i class="fs-4 fa-solid fa-user-group"></i></a>
@@ -129,15 +129,12 @@
 
         <div class="container pt-5 team">
             <div class="row">
-                <c:forEach items="${ejercicios}" var="ejercicios">
+                <c:forEach items="${rutina}" var="ejercicios">
                     <div class="col-lg-3 col-md-6 mb-5">
+
                         <div class="card border-0 bg-secondary text-center text-white shadow p-2 bg-body rounded">
                             <img class="card-img-top" src="data:image/jpeg;base64,${ejercicios.fotobase64}" alt="">
                             <div class="card-social d-flex align-items-center justify-content-center">
-                                <a class="btn btn-outline-light rounded-circle text-center mr-3 px-0"
-                                    style="width: 50px; height: 50px;"
-                                    href="ejercicios?accion=editar&idEjercicio=${ejercicios.idEjercicio}"><i
-                                        class="fs-3 fa-solid fa-pen-to-square"></i></a>
                                 <a class="btn btn-outline-light rounded-circle text-center mr-3 px-0"
                                     style="width: 50px; height: 50px;"
                                     href="ejercicios?accion=eliminar&idEjercicio=${ejercicios.idEjercicio}"><i
@@ -149,8 +146,15 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div>        
                 </c:forEach>
+                    <a class="btn card border-0 bg-secondary text-center text-white shadow p-2 mx-2 bg-body rounded" style="max-width:210px; max-height:280px" href="ejercicios?accion=listarEjerRut">
+                        <img class="card-img-top" src="img/descarga.png" alt="">
+                        <div class="card-body bg-secondary">
+                            <h4 class="card-title text-primary">Añadir Ejercicio</h4>
+                        </div>
+                    </a>
+                
 
             </div>
         </div>

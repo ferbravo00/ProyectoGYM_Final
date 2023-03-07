@@ -48,6 +48,11 @@ public class EjercicioDao implements InterfazEjercicio{
     }
     
     @Override
+    public List<Ejercicio> findEjercicioByBuscar(Ejercicio ejercicio) {
+        return em.createNamedQuery("Ejercicio.findByBuscar").getResultList();
+    }
+    
+    @Override
     public Ejercicio findByParteCuerpo(Ejercicio ejercicio) {
         return em.find(Ejercicio.class, ejercicio.getParteCuerpo());
     }

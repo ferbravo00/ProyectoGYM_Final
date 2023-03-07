@@ -5,47 +5,36 @@
 package web;
 
 import dominio.Ejercicio;
-import dominio.Rutina;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.sql.Blob;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-import negocio.GestionEjer;
-import negocio.GestionUsu;
 import negocio.InterfazGestionEjer;
 
 /**
  *
  * @author Fer
  */
-@WebServlet(name = "EjercicioServlet", urlPatterns = {"/ejercicios"})
+@WebServlet(name = "AdminEjer", urlPatterns = {"/AdminEjer"})
 @MultipartConfig(
     fileSizeThreshold = 1024 * 1024 * 2, // 2 MB
     maxFileSize = 1024 * 1024 * 150,      // 10 MB
     maxRequestSize = 1024 * 1024 * 200    // 50 MB
 )
-public class EjercicioServlet extends HttpServlet {
+public class AdminEjer extends HttpServlet {
 
     @Inject
     private InterfazGestionEjer gestionEjer; // Cremos una instancia de nuestra if local
-    
-
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -60,8 +49,7 @@ public class EjercicioServlet extends HttpServlet {
         
     }
     
-    
-    @Override
+   @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -75,9 +63,7 @@ public class EjercicioServlet extends HttpServlet {
                     case "eliminar":
                         this.eliminarEjer(request, response);
                         break;
-                    case "listarEjerRut":
-                        this.listarEjer(request, response);
-                        break;
+                    
                     default:
                         this.listaEjercicios(request, response);
                 }
@@ -114,24 +100,6 @@ public class EjercicioServlet extends HttpServlet {
     }
 
     
-//    private void listaEjercicios(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        
-//        //1. Recuperamos los parámetros del request
-//        List<Ejercicio> ejercicios = gestionEjer.listarEjercicios();
-//        
-//        System.out.println("ejercicios: " + ejercicios);
-//        
-//        // Ponemos usuarios en un alcance
-//        request.setAttribute("ejercicios", ejercicios);
-//       
-//        
-//        // Redirigimos al JSP
-//        request.getRequestDispatcher("/ejercicios.jsp").forward(request, response);
-//    }
-    
-    
-    
     private void listaEjercicios(HttpServletRequest request, HttpServletResponse response)
            throws ServletException, IOException {
         
@@ -145,7 +113,7 @@ public class EjercicioServlet extends HttpServlet {
             }
         }
         request.setAttribute("ejercicios", ejercicios); // retornamos la lista de ejercicios con sus imágenes en base64
-        request.getRequestDispatcher("/ejercicios.jsp").forward(request, response);
+        request.getRequestDispatcher("/ejerciciosAdmin.jsp").forward(request, response);
     }
     
     
@@ -201,32 +169,6 @@ public class EjercicioServlet extends HttpServlet {
 //        request.getRequestDispatcher("/ejercicios.jsp").forward(request, response);
 //    }
     
-    
-    private void listarEjer(HttpServletRequest request, HttpServletResponse response)
-           throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Rutina usuario = (Rutina) session.getAttribute("rutina");
-        List<Ejercicio> usuarios = gestionEjer.listarEjercicios();
-        List<Ejercicio> noAmigos = new ArrayList<>();
-        
-        for (Ejercicio otroUsuario : usuarios) {
-            if (!usuario.getRutinaejercicioList().contains(otroUsuario)) {
-                noAmigos.add(otroUsuario);
-            }
-        }
-        
-        for (Ejercicio noAmigo : noAmigos) { // recorremos la lista de amigos
-            // obtenemos la imagen en formato byte[]
-            if (noAmigo.getFoto() != null) {
-                byte[] imagen = Base64.getEncoder().encode(noAmigo.getFoto());
-                String foto = new String(imagen,"UTF-8"); // la convertimos a base64
-                noAmigo.setFotobase64(foto); // la seteamos como un string en base64 en el objeto Usuario
-            }
-        }
-        
-        request.setAttribute("rutina", noAmigos);
-        request.getRequestDispatcher("/listarEjercicios.jsp").forward(request, response);
-    }
     
     private void insertarEjer(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

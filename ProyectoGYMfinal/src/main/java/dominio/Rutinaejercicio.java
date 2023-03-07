@@ -6,9 +6,7 @@ package dominio;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,11 +16,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -42,8 +38,6 @@ public class Rutinaejercicio implements Serializable {
     @Basic(optional = false)
     @Column(name = "idRutinaEjercicio")
     private Integer idRutinaEjercicio;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "Fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
@@ -53,19 +47,19 @@ public class Rutinaejercicio implements Serializable {
     @JoinColumn(name = "rutina_idRutina", referencedColumnName = "idRutina")
     @ManyToOne(optional = false)
     private Rutina rutinaidRutina;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rutinaejercicioidRutinaEjercicio")
-    private List<Series> seriesList;
 
     public Rutinaejercicio() {
     }
 
-    public Rutinaejercicio(Integer idRutinaEjercicio) {
-        this.idRutinaEjercicio = idRutinaEjercicio;
+    public Rutinaejercicio(Ejercicio ejercicioidEjercicio, Rutina rutinaidRutina) {
+        this.ejercicioidEjercicio = ejercicioidEjercicio;
+        this.rutinaidRutina = rutinaidRutina;
     }
 
-    public Rutinaejercicio(Integer idRutinaEjercicio, Date fecha) {
+    
+    
+    public Rutinaejercicio(Integer idRutinaEjercicio) {
         this.idRutinaEjercicio = idRutinaEjercicio;
-        this.fecha = fecha;
     }
 
     public Integer getIdRutinaEjercicio() {
@@ -98,14 +92,6 @@ public class Rutinaejercicio implements Serializable {
 
     public void setRutinaidRutina(Rutina rutinaidRutina) {
         this.rutinaidRutina = rutinaidRutina;
-    }
-
-    public List<Series> getSeriesList() {
-        return seriesList;
-    }
-
-    public void setSeriesList(List<Series> seriesList) {
-        this.seriesList = seriesList;
     }
 
     @Override

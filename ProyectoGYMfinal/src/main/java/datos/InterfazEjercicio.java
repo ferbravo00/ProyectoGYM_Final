@@ -20,9 +20,11 @@ public interface InterfazEjercicio {
     public List<Ejercicio> findAllEjercicios();
     public Ejercicio findEjercicioByID(Ejercicio ejercicio);
     public Ejercicio findEjercicioByNombre(Ejercicio ejercicio);
+    public List<Ejercicio> findEjercicioByBuscar(Ejercicio ejercicio);
     public Ejercicio findByParteCuerpo(Ejercicio ejercicio);
     public void insertEjercicio(Ejercicio ejercicio);
     public void updateEjercicio(Ejercicio ejercicio);
     public void deleteEjercicio(Ejercicio ejercicio);
+
     
 }

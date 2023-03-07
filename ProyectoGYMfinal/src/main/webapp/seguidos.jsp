@@ -14,7 +14,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Header</title>
     <link rel="stylesheet" href="lb/css/bootstrap.min.css">
-    <link rel="stylesheet" href="lb/js/bootstrap.min.js">
     <link rel="stylesheet" href="font/fontawesome-free-6.2.1-web/css/all.min.css">
     <link href="css/style.min.css" rel="stylesheet">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
@@ -79,7 +78,7 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav ml-auto p-4 bg-secondary">
-                        <a href="usuarios?accion=listarRut" class="nav-item nav-link me-4 fs-5">Rutinas <i class="fs-4 fa-solid fa-list-dropdown"></i></a>
+                        <a href="pdf.php" class="nav-item nav-link me-4 fs-5">Rutinas <i class="fs-4 fa-solid fa-list-dropdown"></i></a>
                         <!--<a href="usuarios?accion=amigos" class="nav-item nav-link me-4 fs-5">Amigos <i class="fs-4 fa-solid fa-user-group"></i></a>-->
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle me-4 fs-5" data-bs-toggle="dropdown">Amigos <i class="fs-4 fa-solid fa-user-group"></i></a>
@@ -126,26 +125,28 @@
 
 
 
-
         <div class="container pt-5 team">
             <div class="row">
-                <c:forEach items="${ejercicios}" var="ejercicios">
+                <c:forEach items="${amigos}" var="ejercicios">
                     <div class="col-lg-3 col-md-6 mb-5">
                         <div class="card border-0 bg-secondary text-center text-white shadow p-2 bg-body rounded">
-                            <img class="card-img-top" src="data:image/jpeg;base64,${ejercicios.fotobase64}" alt="">
+                            <c:choose>
+                                <c:when test="${not empty ejercicios.fotobase64}">
+                                  <img class="card-img-top" src="data:image/jpeg;base64,${ejercicios.fotobase64}" alt="">
+                                </c:when>
+                                <c:otherwise>
+                                  <img class="card-img-top" src="img/logo-min.jpg" alt="Imagen predeterminada">
+                                </c:otherwise>
+                            </c:choose>
                             <div class="card-social d-flex align-items-center justify-content-center">
                                 <a class="btn btn-outline-light rounded-circle text-center mr-3 px-0"
                                     style="width: 50px; height: 50px;"
-                                    href="ejercicios?accion=editar&idEjercicio=${ejercicios.idEjercicio}"><i
+                                    href="usuarios?accion=nuevoAmigo&id=${ejercicios.idUsuario}"><i
                                         class="fs-3 fa-solid fa-pen-to-square"></i></a>
-                                <a class="btn btn-outline-light rounded-circle text-center mr-3 px-0"
-                                    style="width: 50px; height: 50px;"
-                                    href="ejercicios?accion=eliminar&idEjercicio=${ejercicios.idEjercicio}"><i
-                                        class="fs-3 fa-solid fa-trash"></i></a>
                             </div>
                             <div class="card-body bg-secondary">
                                 <h4 class="card-title text-primary">${ejercicios.nombre}</h4>
-                                <p class="card-text">${ejercicios.parteCuerpo}</p>
+                                <p class="card-text">${ejercicios.correo}</p>
 
                             </div>
                         </div>
@@ -154,43 +155,8 @@
 
             </div>
         </div>
-
-
-
-        <div class="container pt-5 team">
-            <div class="row">
-
-                <div class="d-grid gap-2 col-6 mx-auto shadow p-3 mb-5 bg-body rounded">
-                    <form action="ejercicios?accion=insertar" method="POST" enctype="multipart/form-data">
-                        <div class="row g-3 mb-2">
-                            <div class="col">
-                                <input type="text" REQUIRED class="form-control" name="nombre" placeholder="Nombre">
-                            </div>
-                            <div class="col">
-                                <input type="text" REQUIRED class="form-control" name="parte"
-                                    placeholder="Parte del cuerpo">
-                            </div>
-                        </div>
-                        <input type="text" REQUIRED class="form-control" name="descri" placeholder="Descripcion">
-                        
-                        <input class="form-control my-2" REQUIRED type="file" name="foto" id="formFile">
-
-                        <input type="submit" name="subir" value="Añadir Ejercicio"
-                            class="btn-lg btn-outline-danger fs-4 w-100">
-
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Team End -->
-    </main>
-    <div class=" pt-4 px-5 w-90">
-        <div class="row shadow p-5 mb-5 bg-body rounded mx-5 " id="contenedor">
-
-        </div>
-    </div>
-
-
+        
+    
     <!-- Footer Start -->
     <div class="footer container-fluid mt-5 py-5 px-sm-3 px-md-5 text-white">
         <div class="row pt-2 align-items-center">

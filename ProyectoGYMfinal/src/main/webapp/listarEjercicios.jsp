@@ -129,19 +129,15 @@
 
         <div class="container pt-5 team">
             <div class="row">
-                <c:forEach items="${ejercicios}" var="ejercicios">
+                <c:forEach items="${rutina}" var="ejercicios">
                     <div class="col-lg-3 col-md-6 mb-5">
                         <div class="card border-0 bg-secondary text-center text-white shadow p-2 bg-body rounded">
                             <img class="card-img-top" src="data:image/jpeg;base64,${ejercicios.fotobase64}" alt="">
                             <div class="card-social d-flex align-items-center justify-content-center">
                                 <a class="btn btn-outline-light rounded-circle text-center mr-3 px-0"
                                     style="width: 50px; height: 50px;"
-                                    href="ejercicios?accion=editar&idEjercicio=${ejercicios.idEjercicio}"><i
+                                    href="rutinas?accion=insertar&idEjercicio=${ejercicios.idEjercicio}"><i
                                         class="fs-3 fa-solid fa-pen-to-square"></i></a>
-                                <a class="btn btn-outline-light rounded-circle text-center mr-3 px-0"
-                                    style="width: 50px; height: 50px;"
-                                    href="ejercicios?accion=eliminar&idEjercicio=${ejercicios.idEjercicio}"><i
-                                        class="fs-3 fa-solid fa-trash"></i></a>
                             </div>
                             <div class="card-body bg-secondary">
                                 <h4 class="card-title text-primary">${ejercicios.nombre}</h4>

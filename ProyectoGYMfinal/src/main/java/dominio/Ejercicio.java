@@ -13,11 +13,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 /**
@@ -30,10 +31,24 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Ejercicio.findAll", query = "SELECT e FROM Ejercicio e"),
     @NamedQuery(name = "Ejercicio.findByIdEjercicio", query = "SELECT e FROM Ejercicio e WHERE e.idEjercicio = :idEjercicio"),
     @NamedQuery(name = "Ejercicio.findByNombre", query = "SELECT e FROM Ejercicio e WHERE e.nombre = :nombre"),
-    @NamedQuery(name = "Ejercicio.findByFoto", query = "SELECT e FROM Ejercicio e WHERE e.foto = :foto"),
     @NamedQuery(name = "Ejercicio.findByDescripcion", query = "SELECT e FROM Ejercicio e WHERE e.descripcion = :descripcion"),
     @NamedQuery(name = "Ejercicio.findByParteCuerpo", query = "SELECT e FROM Ejercicio e WHERE e.parteCuerpo = :parteCuerpo")})
 public class Ejercicio implements Serializable {
+
+    @Size(max = 45)
+    @Column(name = "Nombre")
+    private String nombre;
+    @Lob
+    @Column(name = "Foto")
+    private byte[] foto;
+    @Size(max = 500)
+    @Column(name = "Descripcion")
+    private String descripcion;
+    @Size(max = 45)
+    @Column(name = "ParteCuerpo")
+    private String parteCuerpo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ejercicioidEjercicio")
+    private List<Rutinaejercicio> rutinaejercicioList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,24 +56,9 @@ public class Ejercicio implements Serializable {
     @Basic(optional = false)
     @Column(name = "idEjercicio")
     private Integer idEjercicio;
-    @Basic(optional = false)
-    @Size(min = 1, max = 45)
-    @Column(name = "Nombre")
-    private String nombre;
-    @Basic(optional = false)
-    @Size(min = 1, max = 100)
-    @Column(name = "Foto")
-    private String foto;
-    @Basic(optional = false)
-    @Size(min = 1, max = 500)
-    @Column(name = "Descripcion")
-    private String descripcion;
-    @Basic(optional = false)
-    @Size(min = 1, max = 45)
-    @Column(name = "ParteCuerpo")
-    private String parteCuerpo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ejercicioidEjercicio")
-    private List<Rutinaejercicio> rutinaejercicioList;
+    @Transient
+    private String fotobase64;
+    
 
     public Ejercicio() {
     }
@@ -66,15 +66,16 @@ public class Ejercicio implements Serializable {
     public Ejercicio(Integer idEjercicio) {
         this.idEjercicio = idEjercicio;
     }
-
-    public Ejercicio(String nombre, String foto, String descripcion, String parteCuerpo) {
+   
+    
+    public Ejercicio(String nombre, byte[] foto, String descripcion, String parteCuerpo) {
         this.nombre = nombre;
         this.foto = foto;
         this.descripcion = descripcion;
         this.parteCuerpo = parteCuerpo;
     }
     
-    public Ejercicio(Integer idEjercicio, String nombre, String foto, String descripcion, String parteCuerpo) {
+    public Ejercicio(Integer idEjercicio, String nombre, byte[] foto, String descripcion, String parteCuerpo) {
         this.idEjercicio = idEjercicio;
         this.nombre = nombre;
         this.foto = foto;
@@ -82,6 +83,7 @@ public class Ejercicio implements Serializable {
         this.parteCuerpo = parteCuerpo;
     }
 
+    
     public Integer getIdEjercicio() {
         return idEjercicio;
     }
@@ -90,44 +92,13 @@ public class Ejercicio implements Serializable {
         this.idEjercicio = idEjercicio;
     }
 
-    public String getNombre() {
-        return nombre;
+    
+    public String getFotobase64() {
+        return fotobase64;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getParteCuerpo() {
-        return parteCuerpo;
-    }
-
-    public void setParteCuerpo(String parteCuerpo) {
-        this.parteCuerpo = parteCuerpo;
-    }
-
-    public List<Rutinaejercicio> getRutinaejercicioList() {
-        return rutinaejercicioList;
-    }
-
-    public void setRutinaejercicioList(List<Rutinaejercicio> rutinaejercicioList) {
-        this.rutinaejercicioList = rutinaejercicioList;
+    public void setFotobase64(String fotobase64) {
+        this.fotobase64 = fotobase64;
     }
 
     @Override
@@ -153,6 +124,46 @@ public class Ejercicio implements Serializable {
     @Override
     public String toString() {
         return "dominio.Ejercicio[ idEjercicio=" + idEjercicio + " ]";
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getParteCuerpo() {
+        return parteCuerpo;
+    }
+
+    public void setParteCuerpo(String parteCuerpo) {
+        this.parteCuerpo = parteCuerpo;
+    }
+
+    public List<Rutinaejercicio> getRutinaejercicioList() {
+        return rutinaejercicioList;
+    }
+
+    public void setRutinaejercicioList(List<Rutinaejercicio> rutinaejercicioList) {
+        this.rutinaejercicioList = rutinaejercicioList;
     }
     
 }

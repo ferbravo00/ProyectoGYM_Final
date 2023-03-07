@@ -14,7 +14,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Header</title>
     <link rel="stylesheet" href="lb/css/bootstrap.min.css">
-    <link rel="stylesheet" href="lb/js/bootstrap.min.js">
     <link rel="stylesheet" href="font/fontawesome-free-6.2.1-web/css/all.min.css">
     <link href="css/style.min.css" rel="stylesheet">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
@@ -69,9 +68,8 @@
     <main>
         <!-- Navbar Start -->
         <div class="container-fluid p-0 nav-bar">
-            <nav class="navbar navbar-expand-xl bg-none navbar-dark py-3">
-
-                <a href="ejercicios" class="navbar-brand">
+            <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
+                <a href="index.php" class="navbar-brand">
                     <img class="card-img-top" style="width: 200px;" src="img/logosinfondo2.png" alt="">
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -79,23 +77,14 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav ml-auto p-4 bg-secondary">
-                        <a href="usuarios?accion=listarRut" class="nav-item nav-link me-4 fs-5">Rutinas <i class="fs-4 fa-solid fa-list-dropdown"></i></a>
-                        <!--<a href="usuarios?accion=amigos" class="nav-item nav-link me-4 fs-5">Amigos <i class="fs-4 fa-solid fa-user-group"></i></a>-->
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle me-4 fs-5" data-bs-toggle="dropdown">Amigos <i class="fs-4 fa-solid fa-user-group"></i></a>
-                            <div class="dropdown-menu text-capitalize" data-bs-target="#navbarCollapse">
-
-                                <a href="usuarios?accion=buscar" class="dropdown-item">Buscar</a>
-                                <a href="usuarios?accion=seguidores" class="dropdown-item">Seguidores</a>
-                                <a href="usuarios?accion=seguidos" class="dropdown-item">Seguidos</a>
-                            </div>
-                        </div>
-                        <a href="usuarios?accion=editar" class="nav-item nav-link me-4 fs-5">Perfil <i
-                                class="fs-4 fa-solid fa-circle-user"></i></a>
+                        <a href="pdf.php" class="nav-item nav-link me-5 fs-4">Ejercicios <i class="fs-3 fa-solid fa-list-dropdown"></i></a>
+                        <a href="AdminUsu" class="nav-item nav-link me-5 fs-4">Usuarios <i class="fs-3 fa-solid fa-user-group"></i></a>
+                        <a href="usuarios?accion=editar" class="nav-item nav-link me-5 fs-4">Perfil <i
+                                class="fs-3 fa-solid fa-circle-user"></i></a>
 
                     </div>
                 </div>
-                
+
             </nav>
         </div>
         <!-- Navbar End -->
@@ -116,7 +105,7 @@
         <div class="container h-100 py-4">
             <div class="d-flex justify-content-center h-100">
                 <div class="searchbar ">
-                    <form action="ejercicios?accion=buscar" method="post">
+                    <form action="AdminEjer?accion=buscar" method="post">
                         <input class="search_input " type="text" name="texto" placeholder="Buscar...">
                         <button class="search_icon"><i class='fas fa-search'></i></button>
                     </form>
@@ -136,11 +125,11 @@
                             <div class="card-social d-flex align-items-center justify-content-center">
                                 <a class="btn btn-outline-light rounded-circle text-center mr-3 px-0"
                                     style="width: 50px; height: 50px;"
-                                    href="ejercicios?accion=editar&idEjercicio=${ejercicios.idEjercicio}"><i
+                                    href="AdminEjer?accion=editar&idEjercicio=${ejercicios.idEjercicio}"><i
                                         class="fs-3 fa-solid fa-pen-to-square"></i></a>
                                 <a class="btn btn-outline-light rounded-circle text-center mr-3 px-0"
                                     style="width: 50px; height: 50px;"
-                                    href="ejercicios?accion=eliminar&idEjercicio=${ejercicios.idEjercicio}"><i
+                                    href="AdminEjer?accion=eliminar&idEjercicio=${ejercicios.idEjercicio}"><i
                                         class="fs-3 fa-solid fa-trash"></i></a>
                             </div>
                             <div class="card-body bg-secondary">
@@ -161,7 +150,7 @@
             <div class="row">
 
                 <div class="d-grid gap-2 col-6 mx-auto shadow p-3 mb-5 bg-body rounded">
-                    <form action="ejercicios?accion=insertar" method="POST" enctype="multipart/form-data">
+                    <form action="AdminEjer?accion=insertar" method="POST" enctype="multipart/form-data">
                         <div class="row g-3 mb-2">
                             <div class="col">
                                 <input type="text" REQUIRED class="form-control" name="nombre" placeholder="Nombre">
@@ -218,7 +207,7 @@
     </div>
     <!-- Footer End -->
 
-    <script src="lb/js/bootstrap.bundle.min.js"></script>
+
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
 </body>

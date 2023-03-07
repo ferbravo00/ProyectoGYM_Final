@@ -8,6 +8,7 @@ package datos;
 import dominio.Ejercicio;
 import dominio.Rutina;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -15,6 +16,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author Alumno Mañana
  */
+@Stateless
 public class RutinaDao implements InterfazRutina{
     
     @PersistenceContext(unitName="GymPU")

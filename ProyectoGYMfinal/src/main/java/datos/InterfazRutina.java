@@ -7,11 +7,13 @@ package datos;
 
 import dominio.Rutina;
 import java.util.List;
+import javax.ejb.Local;
 
 /**
  *
  * @author Alumno Mañana
  */
+@Local
 public interface InterfazRutina {
     
     public List<Rutina> findAllRutinas();

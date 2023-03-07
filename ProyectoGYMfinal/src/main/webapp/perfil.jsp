@@ -3,7 +3,7 @@
     Created on : 14 feb. 2023, 18:09:30
     Author     : Fer
 --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,18 +65,33 @@
     <main style="background-color: #e9ecef;">
         <!-- Navbar Start -->
         <div class="container-fluid p-0 nav-bar">
-            <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-                <a href="index.php" class="navbar-brand">
+            <nav class="navbar navbar-expand-xl bg-none navbar-dark py-3">
+
+                <a href="ejercicios" class="navbar-brand">
                     <img class="card-img-top" style="width: 200px;" src="img/logosinfondo2.png" alt="">
                 </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav ml-auto p-4 bg-secondary">
-                        <a href="index.php" class="nav-item nav-link me-5 fs-4">Ejercicios <i
-                                class="fs-3 fa-solid fa-dumbbell"></i></a>
+                        <a href="pdf.php" class="nav-item nav-link me-4 fs-5">Rutinas <i class="fs-4 fa-solid fa-list-dropdown"></i></a>
+                        <!--<a href="usuarios?accion=amigos" class="nav-item nav-link me-4 fs-5">Amigos <i class="fs-4 fa-solid fa-user-group"></i></a>-->
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle me-4 fs-5" data-bs-toggle="dropdown">Amigos <i class="fs-4 fa-solid fa-user-group"></i></a>
+                            <div class="dropdown-menu text-capitalize" data-bs-target="#navbarCollapse">
+
+                                <a href="usuarios?accion=buscar" class="dropdown-item">Buscar</a>
+                                <a href="usuarios?accion=seguidores" class="dropdown-item">Seguidores</a>
+                                <a href="usuarios?accion=seguidos" class="dropdown-item">Seguidos</a>
+                            </div>
+                        </div>
+                        <a href="usuarios?accion=editar" class="nav-item nav-link me-4 fs-5">Perfil <i
+                                class="fs-4 fa-solid fa-circle-user"></i></a>
 
                     </div>
                 </div>
-
+                
             </nav>
         </div>
         <!-- Navbar End -->
@@ -96,26 +111,70 @@
 
         <div class="container py-5 team">
             <div class="row shadow p-3 mb-5 bg-body rounded">
-                <div class="d-grid gap-2 col-6 mx-auto ">
-                    <img src="${usuarios.foto}" class="img-thumbnail rounded-circle border-danger">
+                <div class="d-grid gap-2 col-6 mx-auto text-center">
+                    <c:choose>
+                        <c:when test="${not empty usuarios.fotobase64}">
+                            <img src="data:image/jpeg;base64,${usuarios.fotobase64}" style="width: 500px" class="img-thumbnail rounded-circle border-danger">
+                        </c:when>
+                        <c:otherwise>
+                            <img src="img/logo-min.jpg" class="img-thumbnail rounded-circle border-danger">
+                        </c:otherwise>
+                    </c:choose>
+                    <div class="row g-3 mt-3">
+                        <div class="col">
+                            
+                        </div>
+                        <div class="col">
+                            
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="d-grid gap-2 col-6 mx-auto">
-                    <form action="modificarUsu.php" method="POST" enctype="multipart/form-data">
+                    <form action="usuarios?accion=modificar" method="POST" enctype="multipart/form-data">
                         <div class="row g-3 mt-3">
                             <div class="col">
                                 <input type="text" class="form-control" name="nombre" value="${usuarios.nombre}">
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" name="apellidos" value="<?php echo $_SESSION['apellidos']?>">
+                                <div class="row justify-content-start">
+                                    <div class="col">
+                                        <input type="number" class="form-control" style="max-width: 100px;" name="edad" value="${usuarios.edad}">
+                                    </div>
+                                    <div class="col fs-5 d-flex align-items-end">
+                                        <span>años</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-3 mt-3">
+                            <div class="col">
+                                <div class="row justify-content-start">
+                                    <div class="col">
+                                        <input type="number" class="form-control" style="max-width: 100px;" name="altura" value="${usuarios.altura}">
+                                    </div>
+                                    <div class="col fs-5 d-flex align-items-end">
+                                        <span>cm</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row justify-content-start">
+                                    <div class="col">
+                                        <input type="number" class="form-control" style="max-width: 100px;" name="peso" value="${usuarios.peso}">
+                                    </div>
+                                    <div class="col fs-5 d-flex align-items-end">
+                                        <span>kg</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
                         <input type="email" class="form-control my-5" name="correo" value="${usuarios.correo}">
-
-                        <input type="text" value="<?php echo $_SESSION['idUsuario']?>" name="id" hidden >
                         
-                        <input type="text" class="form-control" name="pass" value="${usuarios.clave}">
+                        <input type="text" class="form-control" name="clave" value="${usuarios.clave}">
+                        <input type="text" value="${usuarios.idUsuario}" name="id" hidden >
                         
                         <input class="form-control my-5" name="imagen" type="file" id="formFile">
 
@@ -159,6 +218,7 @@
         <!-- Footer End -->
 
     </main>
+<script src="lb/js/bootstrap.bundle.min.js"></script>                        
 </body>
 
 </html>

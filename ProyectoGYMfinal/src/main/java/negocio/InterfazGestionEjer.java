@@ -21,11 +21,13 @@ public interface InterfazGestionEjer {
     
     public Ejercicio econtrarEjercicioPorNombre(Ejercicio ejercicio);
     
+    public List<Ejercicio> buscarEjercicios(Ejercicio ejercicio);
+    
     public void registrarEjercicio(Ejercicio ejercicio);
     
     public void modificarEjercicio(Ejercicio ejercicio);
     
     public void eliminarEjercicio(Ejercicio ejercicio);
     
-    public List<Ejercicio> buscarEjer(Ejercicio ejer);
+    public List<Ejercicio> buscarEjer(String ejer);
 }

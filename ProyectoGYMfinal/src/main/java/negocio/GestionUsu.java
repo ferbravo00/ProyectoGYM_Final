@@ -68,10 +68,19 @@ public class GestionUsu implements InterfazGestionUsu{
         for (int i = 0; i < num; i++) {
             //System.out.println(seleccionar().size());
             if(this.listarUsuarios().get(i).getCorreo().equalsIgnoreCase(usu.getCorreo()) && listarUsuarios().get(i).getClave().equalsIgnoreCase(usu.getClave())){
+                
                 return true;
             }
         }
     return false;  
+    }
+    
+    @Override
+    public boolean comprobarAdmin(Usuario usu){
+
+        if(usu.getCorreo().equalsIgnoreCase("fer@gmail.com") && usu.getClave().equalsIgnoreCase("fer"))return true;
+        else return false; 
+ 
     }
       
     @Override

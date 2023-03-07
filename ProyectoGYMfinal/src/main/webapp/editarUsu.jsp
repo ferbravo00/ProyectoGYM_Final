@@ -1,6 +1,6 @@
 <%-- 
-    Document   : editar
-    Created on : 14 feb. 2023, 16:46:47
+    Document   : perfil
+    Created on : 14 feb. 2023, 18:09:30
     Author     : Fer
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -66,7 +66,7 @@
         <!-- Navbar Start -->
         <div class="container-fluid p-0 nav-bar">
             <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-                <a href="index.html" class="navbar-brand">
+                <a href="index.php" class="navbar-brand">
                     <img class="card-img-top" style="width: 200px;" src="img/logosinfondo2.png" alt="">
                 </a>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
@@ -86,7 +86,7 @@
         <div class="container-fluid page-header mb-5">
             <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5"
                 style="min-height: 250px">
-                <h4 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase font-weight-bold">Lista de Usuarios</h4>
+                <h4 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase font-weight-bold">Perfil</h4>
 
             </div>
         </div>
@@ -96,58 +96,71 @@
 
         <div class="container py-5 team">
             <div class="row shadow p-3 mb-5 bg-body rounded">
-                <table class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Clave</th>
-                    <th>Edad</th>
-                    <th>Altura</th>
-                    <th>Peso</th>
-                    <th>Foto</th>
-                    <th>Eliminar</th>
-                    <th>Editar</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <c:forEach items="${usuarios}" var="usuario">
-                    <tr>
-                      <td>${usuario.idUsuario}</td>
-                      <td>${usuario.nombre}</td>
-                      <td>${usuario.correo}</td>
-                      <td>${usuario.clave}</td>
-                      <td>${usuario.edad}</td>
-                      <td>${usuario.altura}</td>
-                      <td>${usuario.peso}</td>
-                      <td>
-                        <c:choose>
-                          <c:when test="${not empty usuario.fotobase64}">
-                            <img src="data:image/jpeg;base64,${usuario.fotobase64}" alt="${usuario.nombre}" class="img-fluid rounded-circle" width="50" height="50">
-                          </c:when>
-                          <c:otherwise>
-                            <img src="img/logo-min.jpg" alt="Imagen predeterminada" class="img-fluid rounded-circle" width="50" height="50">
-                          </c:otherwise>
-                        </c:choose>
-                      </td>
-                      <td>
-                        <a class="btn btn-outline-danger rounded-circle"
-                                    style="width: 45px; height: 45px;"
-                                    href="AdminUsu?accion=eliminar&idUsuario=${usuario.idUsuario}"><i
-                                        class="fs-4 fa-solid fa-trash"></i></a>
-                      </td>
-                      <td>
-                        <a class="btn btn-outline-info rounded-circle"
-                                    style="width: 45px; height: 45px;"
-                                    href="AdminUsu?accion=editar&idUsuario=${usuario.idUsuario}"><i
-                                        class="fs-4 fa-solid fa-pen-to-square"></i></a>
-                      </td>
-                    </tr>
-                  </c:forEach>
-                </tbody>
-              </table>
+                <div class="d-grid gap-2 col-6 mx-auto ">
+                    <c:choose>
+                        <c:when test="${not empty usuarios.fotobase64}">
+                            <img src="data:image/jpeg;base64,${usuarios.fotobase64}" class="img-thumbnail rounded-circle border-danger">
+                        </c:when>
+                        <c:otherwise>
+                            <img src="img/logo-min.jpg" class="img-thumbnail rounded-circle border-danger">
+                        </c:otherwise>
+                    </c:choose>
 
+
+                </div>
+
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <form action="AdminUsu?accion=modificar" method="POST" enctype="multipart/form-data">
+                        <div class="row g-3 mt-3">
+                            <div class="col">
+                                <input type="text" class="form-control" name="nombre" value="${usuarios.nombre}">
+                            </div>
+                            <div class="col">
+                                <div class="row justify-content-start">
+                                    <div class="col">
+                                        <input type="number" class="form-control" style="max-width: 100px;" name="edad" value="${usuarios.edad}">
+                                    </div>
+                                    <div class="col fs-5 d-flex align-items-end">
+                                        <span>años</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-3 mt-3">
+                            <div class="col">
+                                <div class="row justify-content-start">
+                                    <div class="col">
+                                        <input type="number" class="form-control" style="max-width: 100px;" name="altura" value="${usuarios.altura}">
+                                    </div>
+                                    <div class="col fs-5 d-flex align-items-end">
+                                        <span>cm</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row justify-content-start">
+                                    <div class="col">
+                                        <input type="number" class="form-control" style="max-width: 100px;" name="peso" value="${usuarios.peso}">
+                                    </div>
+                                    <div class="col fs-5 d-flex align-items-end">
+                                        <span>kg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <input type="email" class="form-control my-5" name="correo" value="${usuarios.correo}">
+                        
+                        <input type="text" class="form-control" name="clave" value="${usuarios.clave}">
+                        <input type="text" value="${usuarios.idUsuario}" name="id" hidden >
+                        
+                        <input class="form-control my-5" name="imagen" type="file" id="formFile">
+
+                        <input type="submit" name="subir" value="Editar Perfil"
+                            class="btn-lg btn-outline-danger fs-4 w-100">
+
+                    </form>
+                </div>
             </div>
         </div>
         <!-- Team End -->

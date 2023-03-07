@@ -8,12 +8,14 @@ package negocio;
 import datos.InterfazRutina;
 import dominio.Rutina;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author Alumno Mañana
  */
+@Stateless
 public class GestionRutina implements InterfazGestionRutina{
     @Inject    
     private InterfazRutina rutinaDao;

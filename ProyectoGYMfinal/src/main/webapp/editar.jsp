@@ -97,11 +97,11 @@
         <div class="container py-5 team col-4">
             <div class="row shadow p-3 mb-5 bg-body rounded">
                 <div class="d-grid gap-2 col-12 mx-auto ">
-                    <img src="${ejercicios.foto}" class="img-thumbnail border-danger mt-4 w-100">
+                    <img src="data:image/jpeg;base64,${ejercicios.fotobase64}" class="img-thumbnail border-danger mt-4 w-100">
                 </div>
 
                 <div class="d-grid gap-2 col-12 mx-auto">
-                    <form action="ejercicios?accion=modificar" method="POST">
+                    <form action="ejercicios?accion=modificar" method="POST" enctype="multipart/form-data">
                         <div class="row g-3 mt-3">
                             <div class="col">
                                 <input type="text" class="form-control" name="nombre" value="${ejercicios.nombre}">
