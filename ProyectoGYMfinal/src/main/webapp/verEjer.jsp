@@ -59,8 +59,6 @@
         color: #e74c3c;
     }
     
-
-    
     </style>
 </head>
 
@@ -69,12 +67,12 @@
         <!-- Navbar Start -->
         <div class="container-fluid p-0 nav-bar">
             <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-                <a href="AdminEjer" class="navbar-brand">
+                <a href="index.html" class="navbar-brand">
                     <img class="card-img-top" style="width: 200px;" src="img/logosinfondo2.png" alt="">
                 </a>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav ml-auto p-4 bg-secondary">
-                        <a href="AdminEjer" class="nav-item nav-link me-5 fs-4">Ejercicios <i
+                        <a href="index.php" class="nav-item nav-link me-5 fs-4">Ejercicios <i
                                 class="fs-3 fa-solid fa-dumbbell"></i></a>
 
                     </div>
@@ -104,26 +102,24 @@
                 </div>
 
                 <div class="d-grid gap-2 col-12 mx-auto">
-                    <form action="ejercicios?accion=modificar" method="POST" enctype="multipart/form-data">
-                        <div class="row g-3 mt-3">
-                            <div class="col">
-                                <input type="text" class="form-control" name="nombre" value="${ejercicios.nombre}">
-                                <input type="text" value="${ejercicios.idEjercicio}" name="id" hidden >
-                            </div>
-                            <div class="col">
-                                <input type="text" class="form-control" name="parte" value="${ejercicios.parteCuerpo}">
-                            </div>
+                    <div class="row g-3 mt-3">
+                        <div class="col">
+                            <div class="form-control">${ejercicios.nombre}</div>
+                            <input type="text" value="${ejercicios.idEjercicio}" name="id" hidden>
                         </div>
-                        <input type="text" class="form-control mt-4" name="descri" value="${ejercicios.descripcion}">
-                        <input class="form-control my-4" name="imagen" type="file" id="formFile">
+                        <div class="col">
+                            <div class="form-control">${ejercicios.parteCuerpo}</div>
+                        </div>
+                    </div>
+                    <div class="form-control mt-3">${ejercicios.descripcion}</div>
 
-                        <input type="submit" name="subir" value="Editar Ejercicio"
-                            class="btn-lg btn-outline-danger mb-4 fs-4 w-100">
+                    <a href="ejercicios" class="mt-3 btn btn-lg btn-outline-danger mb-4 fs-4 w-100">Volver</a>
 
-                    </form>
+
                 </div>
             </div>
         </div>
+
         <!-- Team End -->
 
 

@@ -66,12 +66,12 @@
         <!-- Navbar Start -->
         <div class="container-fluid p-0 nav-bar">
             <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-                <a href="index.php" class="navbar-brand">
+                <a href="AdminEjer" class="navbar-brand">
                     <img class="card-img-top" style="width: 200px;" src="img/logosinfondo2.png" alt="">
                 </a>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav ml-auto p-4 bg-secondary">
-                        <a href="index.php" class="nav-item nav-link me-5 fs-4">Ejercicios <i
+                        <a href="AdminEjer" class="nav-item nav-link me-5 fs-4">Ejercicios <i
                                 class="fs-3 fa-solid fa-dumbbell"></i></a>
 
                     </div>

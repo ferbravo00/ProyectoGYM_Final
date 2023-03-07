@@ -69,7 +69,7 @@
         <!-- Navbar Start -->
         <div class="container-fluid p-0 nav-bar">
             <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-                <a href="index.php" class="navbar-brand">
+                <a href="AdminEjer" class="navbar-brand">
                     <img class="card-img-top" style="width: 200px;" src="img/logosinfondo2.png" alt="">
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -77,11 +77,9 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav ml-auto p-4 bg-secondary">
-                        <a href="pdf.php" class="nav-item nav-link me-5 fs-4">Ejercicios <i class="fs-3 fa-solid fa-list-dropdown"></i></a>
+                        <a href="AdminEjer" class="nav-item nav-link me-5 fs-4 active">Ejercicios <i class="fs-3 fa-solid fa-list-dropdown"></i></a>
                         <a href="AdminUsu" class="nav-item nav-link me-5 fs-4">Usuarios <i class="fs-3 fa-solid fa-user-group"></i></a>
-                        <a href="usuarios?accion=editar" class="nav-item nav-link me-5 fs-4">Perfil <i
-                                class="fs-3 fa-solid fa-circle-user"></i></a>
-
+                       
                     </div>
                 </div>
 
@@ -173,11 +171,7 @@
         </div>
         <!-- Team End -->
     </main>
-    <div class=" pt-4 px-5 w-90">
-        <div class="row shadow p-5 mb-5 bg-body rounded mx-5 " id="contenedor">
-
-        </div>
-    </div>
+    
 
 
     <!-- Footer Start -->

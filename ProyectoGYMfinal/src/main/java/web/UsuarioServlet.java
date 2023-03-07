@@ -281,7 +281,7 @@ public class UsuarioServlet extends HttpServlet{
         List<Usuario> noAmigos = new ArrayList<>();
         
         for (Usuario otroUsuario : usuarios) {
-            if (!usuario.getUsuarioList().contains(otroUsuario) && !otroUsuario.equals(usuario) && !usuario.getCorreo().equalsIgnoreCase("fer@gmail.com")) {
+            if (!usuario.getUsuarioList().contains(otroUsuario) && !otroUsuario.equals(usuario) && !otroUsuario.getCorreo().equalsIgnoreCase("fer@gmail.com")) {
                 noAmigos.add(otroUsuario);
             }
         }
@@ -364,7 +364,20 @@ public class UsuarioServlet extends HttpServlet{
             usuarios.setFotobase64(foto); // la seteamos como un string en base64 en el objeto Ejercicio
 //            System.out.println(usuarios.getFotobase64());
         }
+        
+        List<Usuario> seguidos = usuarios.getUsuarioList();
+        int numSeguidos = seguidos.size();
+        int numSeguidores = 0;
+        List<Usuario> usu = gestionUsu.listarUsuarios();
+        for (Usuario otroUsuario : usu) {
+            if (otroUsuario.getUsuarioList().contains(usuarios)) {
+                numSeguidores++;
+            }
+        }
+        
         request.setAttribute("usuarios", usuarios);
+        request.setAttribute("seguidores", numSeguidores);
+        request.setAttribute("seguidos", numSeguidos);
   
         // Redirigimos al JSP
         request.getRequestDispatcher("/perfil.jsp").forward(request, response);
@@ -378,7 +391,7 @@ public class UsuarioServlet extends HttpServlet{
         
         String correo = request.getParameter("correo");
         String clave = request.getParameter("pass");
-
+        
         //2. Creamos nuestro objeto Cliente
         Usuario usuario = new Usuario(correo, clave);
         int num = gestionUsu.listarUsuarios().size();     //Lo he tenido que meter en una variable para que funcione...

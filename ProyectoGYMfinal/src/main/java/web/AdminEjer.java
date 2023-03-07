@@ -145,7 +145,7 @@ public class AdminEjer extends HttpServlet {
        
         
         // Redirigimos al JSP
-        request.getRequestDispatcher("/ejercicios.jsp").forward(request, response);
+        request.getRequestDispatcher("/ejerciciosAdmin.jsp").forward(request, response);
     }
     
     

@@ -341,7 +341,7 @@ public class EjercicioServlet extends HttpServlet {
        
         
         // Redirigimos al JSP
-        request.getRequestDispatcher("/editar.jsp").forward(request, response);
+        request.getRequestDispatcher("/verEjer.jsp").forward(request, response);
     }
     /**
      * Returns a short description of the servlet.

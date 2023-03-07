@@ -79,6 +79,7 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav ml-auto p-4 bg-secondary">
+                        <a href="ejercicios" class="nav-item nav-link me-5 fs-4">Ejercicios <i class="fs-3 fa-solid fa-list-dropdown"></i></a>
                         <a href="usuarios?accion=listarRut" class="nav-item nav-link me-4 fs-5">Rutinas <i class="fs-4 fa-solid fa-list-dropdown"></i></a>
                         <!--<a href="usuarios?accion=amigos" class="nav-item nav-link me-4 fs-5">Amigos <i class="fs-4 fa-solid fa-user-group"></i></a>-->
                         <div class="nav-item dropdown">

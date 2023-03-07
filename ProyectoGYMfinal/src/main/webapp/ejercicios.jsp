@@ -136,12 +136,7 @@
                             <div class="card-social d-flex align-items-center justify-content-center">
                                 <a class="btn btn-outline-light rounded-circle text-center mr-3 px-0"
                                     style="width: 50px; height: 50px;"
-                                    href="ejercicios?accion=editar&idEjercicio=${ejercicios.idEjercicio}"><i
-                                        class="fs-3 fa-solid fa-pen-to-square"></i></a>
-                                <a class="btn btn-outline-light rounded-circle text-center mr-3 px-0"
-                                    style="width: 50px; height: 50px;"
-                                    href="ejercicios?accion=eliminar&idEjercicio=${ejercicios.idEjercicio}"><i
-                                        class="fs-3 fa-solid fa-trash"></i></a>
+                                    href="ejercicios?accion=editar&idEjercicio=${ejercicios.idEjercicio}"><i class="fs-3 fa-solid fa-eye"></i></a>
                             </div>
                             <div class="card-body bg-secondary">
                                 <h4 class="card-title text-primary">${ejercicios.nombre}</h4>
@@ -155,40 +150,9 @@
             </div>
         </div>
 
-
-
-        <div class="container pt-5 team">
-            <div class="row">
-
-                <div class="d-grid gap-2 col-6 mx-auto shadow p-3 mb-5 bg-body rounded">
-                    <form action="ejercicios?accion=insertar" method="POST" enctype="multipart/form-data">
-                        <div class="row g-3 mb-2">
-                            <div class="col">
-                                <input type="text" REQUIRED class="form-control" name="nombre" placeholder="Nombre">
-                            </div>
-                            <div class="col">
-                                <input type="text" REQUIRED class="form-control" name="parte"
-                                    placeholder="Parte del cuerpo">
-                            </div>
-                        </div>
-                        <input type="text" REQUIRED class="form-control" name="descri" placeholder="Descripcion">
-                        
-                        <input class="form-control my-2" REQUIRED type="file" name="foto" id="formFile">
-
-                        <input type="submit" name="subir" value="Añadir Ejercicio"
-                            class="btn-lg btn-outline-danger fs-4 w-100">
-
-                    </form>
-                </div>
-            </div>
-        </div>
         <!-- Team End -->
     </main>
-    <div class=" pt-4 px-5 w-90">
-        <div class="row shadow p-5 mb-5 bg-body rounded mx-5 " id="contenedor">
-
-        </div>
-    </div>
+    
 
 
     <!-- Footer Start -->

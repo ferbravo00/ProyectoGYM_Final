@@ -99,6 +99,10 @@ public class AdminUsu extends HttpServlet {
         List<Usuario> usuarios = gestionUsu.listarUsuarios();
         System.out.println("usuarios: " + usuarios);
         
+        for(Usuario usu: usuarios){
+            if(usu.getCorreo().equalsIgnoreCase("fer@gmail.com"))usuarios.remove(usu);
+        }
+        
         for (Usuario ejer : usuarios) { // recorremos la lista de ejercicios
              // obtenemos la imagen en formato byte[]
             if (ejer.getFoto() != null) {
