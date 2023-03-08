@@ -31,6 +31,8 @@ public interface InterfazGestionUsu {
     
     public boolean comprobar(Usuario usu);
     
+    public boolean comprobarExi(Usuario usu);
+    
     public boolean comprobarAdmin(Usuario usu);
     
     public List<Usuario> buscarUsu(Usuario usu);

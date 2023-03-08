@@ -75,6 +75,20 @@ public class GestionUsu implements InterfazGestionUsu{
     return false;  
     }
     
+    
+    @Override
+    public boolean comprobarExi(Usuario usu){
+        int num = listarUsuarios().size();     //Lo he tenido que meter en una variable para que funcione...
+        for (int i = 0; i < num; i++) {
+            //System.out.println(seleccionar().size());
+            if(this.listarUsuarios().get(i).getCorreo().equalsIgnoreCase(usu.getCorreo())){
+                
+                return true;
+            }
+        }
+    return false;  
+    }
+    
     @Override
     public boolean comprobarAdmin(Usuario usu){
 

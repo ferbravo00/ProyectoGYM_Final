@@ -104,7 +104,7 @@
                 </div>
 
                 <div class="d-grid gap-2 col-12 mx-auto">
-                    <form action="ejercicios?accion=modificar" method="POST" enctype="multipart/form-data">
+                    <form action="AdminEjer?accion=modificar" method="POST" enctype="multipart/form-data">
                         <div class="row g-3 mt-3">
                             <div class="col">
                                 <input type="text" class="form-control" name="nombre" value="${ejercicios.nombre}">

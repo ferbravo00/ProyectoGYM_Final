@@ -79,7 +79,7 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav ml-auto p-4 bg-secondary">
-                        <a href="ejercicios" class="nav-item nav-link me-5 fs-4">Ejercicios <i class="fs-3 fa-solid fa-list-dropdown"></i></a>
+                        <a href="ejercicios" class="nav-item nav-link me-4 fs-5">Ejercicios <i class="fs-4 fa-solid fa-list-dropdown"></i></a>
                         <a href="usuarios?accion=listarRut" class="nav-item nav-link me-4 fs-5 active">Rutinas <i class="fs-4 fa-solid fa-list-dropdown"></i></a>
                         <!--<a href="usuarios?accion=amigos" class="nav-item nav-link me-4 fs-5">Amigos <i class="fs-4 fa-solid fa-user-group"></i></a>-->
                         <div class="nav-item dropdown">
@@ -110,11 +110,11 @@
 
             </div>
         </div>
-        <!-- Page Header End -->
+         <!--Page Header End -->
 
 
 
-        <div class="container h-100 py-4">
+        <!--<div class="container h-100 py-4">
             <div class="d-flex justify-content-center h-100">
                 <div class="searchbar ">
                     <form action="ejercicios?accion=buscar" method="post">
@@ -123,7 +123,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div>-->
 
 
 

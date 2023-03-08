@@ -142,12 +142,18 @@ public class UsuarioServlet extends HttpServlet{
         System.out.println("hola");
         //2. Creamos nuestro objeto Cliente
         Usuario usuario = new Usuario(nombre, correo, clave, Integer.parseInt(edad), Integer.parseInt(altura), Integer.parseInt(peso));
-        //3. Invocamos al método de acceso a datos que inserta un cliente
-        gestionUsu.registrarUsuario(usuario);
+        
+        if(gestionUsu.comprobarExi(usuario))response.sendRedirect("registrar.jsp");
+        else{
+            gestionUsu.registrarUsuario(usuario);
+            response.sendRedirect("index.jsp");
+        }
+        
+        
         //System.out.println("registrosModificados = " + registrosModificados);
         //4. Redirigimos a la acción por defecto
         //this.accionDefault(request, response);
-        response.sendRedirect("index.jsp");
+        
     }
     
     
