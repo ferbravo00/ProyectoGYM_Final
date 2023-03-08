@@ -72,9 +72,9 @@ public class EjercicioServlet extends HttpServlet {
                     case "editar":
                         this.editarEjer(request, response);
                         break;
-                    case "eliminar":
-                        this.eliminarEjer(request, response);
-                        break;
+//                    case "eliminar":
+//                        this.eliminarEjer(request, response);
+//                        break;
                     case "listarEjerRut":
                         this.listarEjer(request, response);
                         break;
@@ -99,9 +99,9 @@ public class EjercicioServlet extends HttpServlet {
                     case "insertar":
                         this.insertarEjer(request, response);
                         break;
-                    case "modificar":
-                        this.modificarEjer(request, response);
-                        break;
+//                    case "modificar":
+//                        this.modificarEjer(request, response);
+//                        break;
                     case "buscar":
                         this.buscarEjercicios(request, response);
                         break;
@@ -270,49 +270,49 @@ public class EjercicioServlet extends HttpServlet {
 
     
     
-    private void modificarEjer(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        //1. Recuperamos los parámetros del request
-        //1. Recuperamos los parámetros del request
-        String id = request.getParameter("id");
-        String nombre = request.getParameter("nombre");
-        String parte = request.getParameter("parte");
-        String descri = request.getParameter("descri");
-        Part filePart = request.getPart("imagen"); // Recuperar el archivo de entrada
-        byte[] foto = null;
-        if (filePart != null) {
-            InputStream fileContent = filePart.getInputStream(); // Obtener la entrada de archivo
-            foto = leerBytesDeInputStream(fileContent); // Leer el contenido del archivo en un array de bytes usando el nuevo método
-        }
-
-        //2. Creamos nuestro objeto Ejercicio
-        Ejercicio ejercicio = new Ejercicio(Integer.parseInt(id), nombre, foto, descri, parte);
-
-        //3. Invocamos al método de acceso a datos que inserta un cliente
-        gestionEjer.modificarEjercicio(ejercicio);
-
-        //4. Redirigimos a la acción por defecto
-        this.listaEjercicios(request, response);
-
-    }
+//    private void modificarEjer(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//        
+//        //1. Recuperamos los parámetros del request
+//        //1. Recuperamos los parámetros del request
+//        String id = request.getParameter("id");
+//        String nombre = request.getParameter("nombre");
+//        String parte = request.getParameter("parte");
+//        String descri = request.getParameter("descri");
+//        Part filePart = request.getPart("imagen"); // Recuperar el archivo de entrada
+//        byte[] foto = null;
+//        if (filePart != null) {
+//            InputStream fileContent = filePart.getInputStream(); // Obtener la entrada de archivo
+//            foto = leerBytesDeInputStream(fileContent); // Leer el contenido del archivo en un array de bytes usando el nuevo método
+//        }
+//
+//        //2. Creamos nuestro objeto Ejercicio
+//        Ejercicio ejercicio = new Ejercicio(Integer.parseInt(id), nombre, foto, descri, parte);
+//
+//        //3. Invocamos al método de acceso a datos que inserta un cliente
+//        gestionEjer.modificarEjercicio(ejercicio);
+//
+//        //4. Redirigimos a la acción por defecto
+//        this.listaEjercicios(request, response);
+//
+//    }
     
-    private void eliminarEjer(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        //1. Recuperamos los parámetros del request
-
-        String id =request.getParameter("idEjercicio");
-
-        //2. Creamos nuestro objeto Cliente
-        Ejercicio ejercicio = new Ejercicio(Integer.parseInt(id));
-        //3. Invocamos al método de acceso a datos que inserta un cliente
-        gestionEjer.eliminarEjercicio(ejercicio);
-        //System.out.println("registrosModificados = " + registrosModificados);
-        //4. Redirigimos a la acción por defecto
-        //this.accionDefault(request, response);
-        this.listaEjercicios(request, response);
-    }
+//    private void eliminarEjer(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//        
+//        //1. Recuperamos los parámetros del request
+//
+//        String id =request.getParameter("idEjercicio");
+//
+//        //2. Creamos nuestro objeto Cliente
+//        Ejercicio ejercicio = new Ejercicio(Integer.parseInt(id));
+//        //3. Invocamos al método de acceso a datos que inserta un cliente
+//        gestionEjer.eliminarEjercicio(ejercicio);
+//        //System.out.println("registrosModificados = " + registrosModificados);
+//        //4. Redirigimos a la acción por defecto
+//        //this.accionDefault(request, response);
+//        this.listaEjercicios(request, response);
+//    }
     
     
     private void editarEjer(HttpServletRequest request, HttpServletResponse response)
